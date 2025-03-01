@@ -203,15 +203,15 @@ cd /
 Di chuyển các tập tin cấu hình vào các thư mục thích hợp:
 
 ```bash
-sudo mv /tmp/prometheus-2.53.3.linux-amd64.tar.gz/console* /etc/prometheus/
-sudo mv /tmp/prometheus-2.53.3.linux-amd64.tar.gz/prometheus.yml /etc/prometheus/
+sudo mv /tmp/prometheus-2.53.3.linux-amd64/console*/ /etc/prometheus/
+sudo mv /tmp/prometheus-2.53.3.linux-amd64/prometheus.yml /etc/prometheus/
 ```
 
 Di chuyển các tệp nhị phân vào các thư mục thích hợp:
 
 ```bash
-sudo mv /tmp/prometheus-2.53.3.linux-amd64.tar.gz/prometheus /usr/local/bin/
-sudo mv /tmp/prometheus-2.53.3.linux-amd64.tar.gz/promtool /usr/local/bin/
+sudo mv /tmp/prometheus-2.53.3.linux-amd64/prometheus /usr/local/bin/
+sudo mv /tmp/prometheus-2.53.3.linux-amd64/promtool /usr/local/bin/
 ```
 
 Đặt chủ sở hữu của các tập tin cấu hình chocho người dùng `prometheus`
@@ -228,3 +228,4 @@ sudo chown prometheus:prometheus /usr/local/bin/prometheus
 sudo chown prometheus:prometheus /usr/local/bin/promtool
 ```
 
+#### Prometheus configuration file
