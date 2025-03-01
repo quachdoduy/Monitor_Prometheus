@@ -14,3 +14,17 @@
 [![donate with buymeacoffe](https://img.shields.io/badge/Like_it%3F-Donate!-blue?logo=githubsponsors&logoColor=orange&style=flat)](https://buymeacoffee.com/quachdoduy)
 
 # PROMETHEUS + GRAFANA
+<img alt="Prometheus" src="/images/prometheuspng">
+Nguồn tài liệu tham khảo tại đây:
+- [Prometheus.](https://prometheus.io/docs/introduction/overview/)
+- [Grafana.](https://grafana.com/docs/)
+
+Dự án được xây dựng trên mô hình ảo hóa (VMWare) với các máy chủ cài đặt hệ điều hành Ubuntu Server 24.02 LTS. Danh sách các máy chủ như dưới:
+- Server Prometheus:
+    Thực hiện cài đặt các thành phần:
+    - Prometheus.
+    - Alert Manager. *(Tùy điều kiện triển khai, chúng ta có thể tách rời Alert Manager độc lập)*.
+- Server Grafana:
+    Thực hiện cài đặt Grafana để kết nối đến Prometheus.
+- Server Linux và Server Windows:
+    Thực hiện cài đặt Node Exporter để kết Prometheus và cung cấp các Metrics.
