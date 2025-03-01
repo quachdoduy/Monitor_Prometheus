@@ -60,12 +60,39 @@ Dự án được xây dựng trên mô hình ảo hóa (VMWare) với các máy
     Windows Server 2019: đăng nhập bằng tài khoản quản trị **.\Administrator**. *(Chú ý: môi trường Local không Domain.)*
     Ubutu 24.02 LTS: đăng nhập bằng tài khoản quản trị **root**. *(Chú ý: mặc định tài khoản root không được kích hoạt, bạn cần đặt mặt khẩu sau đó mới đăng nhập được.)*
 
-Hướng dẫn thiết lập mật khẩu cho tài khoản root.
+Thiết lập mật khẩu cho tài khoản root.
 
-    ```bash
-    sudo passwd root
-    ```
-    *Sau đó thực hiện thiết lập mật khẩu cho tài khoản root.*
+```bash
+sudo passwd root
+```
 
+*Sau đó thực hiện thiết lập mật khẩu cho tài khoản root.*
+
+Cập nhật hệ thống với các bản cập nhật mới nhất.
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
 
 ### Setup Prometheus
+Thực hiện trên máy chủ ProSVR-VT.
+
+#### Creating a Prometheus User and Directory
+Vì một vài lý do bảo mật, Prometheus không chạy như là root user. Do đó cần khởi tạo user cho Prometheus:
+
+```bash
+sudo useradd --no-create-home --shell /bin/false prometheus
+```
+
+Tạo các thư mục mà chúng ta sẽ lưu trữ các tập tin cấu hình và thư viện:
+
+```bash
+sudo mkdir /etc/prometheus
+sudo mkdir /var/lib/prometheus
+```
+
+Thiết lập quyền sở hữu thư mục `/var/lib/prometheus` bằng lệnh bên dưới:
+
+```bash
+sudo chown prometheus:prometheus /var/lib/prometheus
+```
