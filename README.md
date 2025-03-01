@@ -2,8 +2,7 @@
     <a href="https://prometheus.io" target="_blank"><img alt="Prometheus" src="/images/prometheus-logo.svg"></a><br>Prometheus
 </h1>
 
-<p align="center">Visit <a href="https://prometheus.io" target="_blank">prometheus.io</a> for the full documentation,
-examples and guides.</p>
+<p align="center">Visit <a href="https://prometheus.io" target="_blank">prometheus.io</a> for the full documentation, examples and guides.</p>
 
 [![Lang VI](https://img.shields.io/badge/lang-vi-red)](https://github.com/quachdoduy/Monitor_Prometheus/blob/main/README.vi.md)
 [![Lang EN](https://img.shields.io/badge/lang-en-green)](https://github.com/quachdoduy/Monitor_Prometheus/blob/main/README.md)<br/>
