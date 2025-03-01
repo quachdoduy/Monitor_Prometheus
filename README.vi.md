@@ -292,5 +292,8 @@ sudo ufw allow 9090/tcp
 ```
 
 Bây giờ dịch vụ Prometheus đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://server-IP-or-Hostname:9090.`
+<img alt="Prometheus Finish" src="/images/Prometheus_Finish.png">
+Như chúng ta có thể thấy bảng điều khiển Prometheus, chúng ta cũng có thể kiểm tra mục tiêu. Như chúng ta có thể thấy trạng thái hiện tại là LÊN và chúng ta cũng có thể thấy lần cào cuối cùng.
+<img alt="Prometheus Finish" src="/images/Prometheus_Finish_1.png">
 
 ## 3.Setup Node Exporter
