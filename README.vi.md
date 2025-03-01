@@ -74,7 +74,7 @@ sudo passwd root
 sudo -
 ```
 
-**Cho phép root được quyền SSHSSH.**
+**Cho phép root được quyền SSH.**
 - Mở và sửa file cấu hình SSH bằng lệnh.
 
 ```bash
