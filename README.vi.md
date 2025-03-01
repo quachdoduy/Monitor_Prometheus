@@ -62,7 +62,10 @@ Dự án được xây dựng trên mô hình ảo hóa (VMWare) với các máy
 
 Hướng dẫn thiết lập mật khẩu cho tài khoản root.
 
-```bash
-sudo passwd root
-```
-*Sau đó thực hiện thiết lập mật khẩu cho tài khoản root.*
+    ```bash
+    sudo passwd root
+    ```
+    *Sau đó thực hiện thiết lập mật khẩu cho tài khoản root.*
+
+
+### Setup Prometheus
