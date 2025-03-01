@@ -297,3 +297,7 @@ Như chúng ta có thể thấy bảng điều khiển Prometheus, chúng ta cũ
 <img alt="Prometheus Finish" src="/images/Prometheus_Finish_1.png">
 
 ## 3.Setup Node Exporter
+Thực hiện trên máy chủ NuxSVR-VTVT.
+
+Truy cập trang phát hành chính thức của [Prometheus Node Exporter](https://github.com/prometheus/node_exporter/releases/) và sao chép liên kết phiên bản mới nhất của gói Node Exporter theo loại hệ điều hành của bạn.
+Tại dự án này chúng ta sử dụng Prometheus Node Exporter version 1.9.0 (Filename: node_exporter-1.9.0.darwin-amd64.tar.gz)
