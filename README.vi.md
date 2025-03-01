@@ -229,3 +229,11 @@ sudo chown prometheus:prometheus /usr/local/bin/promtool
 ```
 
 #### Prometheus configuration file
+Chúng tôi đã sao chép tệp 'prometheus.yml' từ '/tmp/prometheus-2.53.3.linux-amd64/' vào thư mục '/etc/prometheus' ở bước trên.
+Bạn hãy kiểm tra xem nó có tồn tại và trông giống như bên dưới không rồi sửa đổi theo yêu cầu của bạn.
+
+```bash
+sudo nano /etc/prometheus/prometheus.yml
+```
+
+<img alt="Prometheus Config File" src="/images/Prometheus_Config_File.png">
