@@ -14,3 +14,7 @@
 [![donate with buymeacoffe](https://img.shields.io/badge/Like_it%3F-Donate!-blue?logo=githubsponsors&logoColor=orange&style=flat)](https://buymeacoffee.com/quachdoduy)
 
 # PROMETHEUS + GRAFANA
+<img alt="Prometheus" src="/images/prometheuspng">
+References here:
+- [Prometheus.](https://prometheus.io/docs/introduction/overview/)
+- [Grafana.](https://grafana.com/docs/)
