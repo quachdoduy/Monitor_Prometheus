@@ -13,8 +13,10 @@
 [![donate with paypal](https://img.shields.io/badge/Like_it%3F-Donate!-green?logo=githubsponsors&logoColor=orange&style=flat)](https://paypal.me/quachdoduy)
 [![donate with buymeacoffe](https://img.shields.io/badge/Like_it%3F-Donate!-blue?logo=githubsponsors&logoColor=orange&style=flat)](https://buymeacoffee.com/quachdoduy)
 
-# PROMETHEUS + GRAFANA
-<img alt="Prometheus" src="/images/prometheuspng">
+<h1 align="center" style="border-bottom: none">
+    <a href="https://github.com/quachdoduy/Monitor_Prometheus" target="_blank"><img alt="Topo" src="/images/prometheuspng"></a><br>Prometheus + Grafana
+</h1>
+
 Nguồn tài liệu tham khảo tại đây:
 - [Prometheus.](https://prometheus.io/docs/introduction/overview/)
 - [Grafana.](https://grafana.com/docs/)
