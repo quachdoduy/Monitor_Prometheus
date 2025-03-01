@@ -94,6 +94,7 @@ sudo service ssh restart
 ```
 
 *Kiểm tra lại kết nối SSH với tài khoản root*
+
 **Xóa tài khoản quản trị được khởi tạo lúc cài đặt**
 - Kiểm tra lại quyền `sudo` của tài khoản quản trị lúc cài đặt `nuxadmin`
 
