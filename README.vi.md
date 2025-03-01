@@ -60,22 +60,29 @@ Dự án được xây dựng trên mô hình ảo hóa (VMWare) với các máy
     Windows Server 2019: đăng nhập bằng tài khoản quản trị **.\Administrator**. *(Chú ý: môi trường Local không Domain.)*
     Ubutu 24.02 LTS: đăng nhập bằng tài khoản quản trị **root**. *(Chú ý: mặc định tài khoản root không được kích hoạt, bạn cần đặt mặt khẩu sau đó mới đăng nhập được.)*
 
-Thiết lập mật khẩu cho tài khoản root.
+**Kích hoạt tài khoản root**
+- Thiết lập mật khẩu cho tài khoản root.
 
 ```bash
 sudo passwd root
 ```
 
 *Sau đó thực hiện thiết lập mật khẩu cho tài khoản root.*
+- Chuyển qua tài khoản root.
 
-Sửa file cấu hình SSH.
+```bash
+sudo -
+```
+
+**Sửa file cấu hình SSH.**
 - Mở file cấu hình SSH bằng lệnh.
 
 ```bash
 sudo nano /etc/ssh/sshd_config
 ```
 
-- Tìm đến dòng lệnh `#PermitRootLogin prohibit-password` và bỏ dấu `#` và sửa thành `PermitRootLogin yes`
+- Tìm đến dòng lệnh `#PermitRootLogin prohibit-password` và bỏ dấu comment `#` và sửa thành `PermitRootLogin yes`
+- Tìm đến dòng lệnh `#PasswordAuthentication yes` và bỏ dấu comment `#` thành `PasswordAuthentication yes`
 - Lưu lại file `CTRL + O` và đóng lại `CTRL + x`.
 - Khởi động lại dịch vụ SSH bằng 1 trong 2 lệnh dưới.
 
@@ -87,26 +94,53 @@ sudo service ssh restart
 ```
 
 *Kiểm tra lại kết nối SSH với tài khoản root*
+**Xóa tài khoản quản trị được khởi tạo lúc cài đặt**
+- Kiểm tra lại quyền `sudo` của tài khoản quản trị lúc cài đặt `nuxadmin`
 
-Cập nhật hệ thống với các bản cập nhật mới nhất.
+```bash
+sudo cat /etc/sudoers.d/nuxadmin
+```
+
+- Nếu có bạn nên xóa file này trước.
+
+```bash
+sudo rm /etc/sudoers.d/nuxadmin
+```
+
+- Kiểm tra danh sách người dùng trước khi xóa.
+
+```bash
+cat /etc/passwd | grep nuxadmin
+```
+
+- Thực hiện xóa quản trị.
+
+```bash
+userdel -r nuxadmin
+```
+
+*Bạn nhớ kiểm tra lại danh sách người dùng sau khi xóa*
+
+**Cập nhật hệ thống với các bản cập nhật mới nhất.**
 
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
 
-Hiển thị địa chỉ IPv4 các NIC của máy chủ
+**Các câu lệnh kiểm tra khác**
+- Hiển thị địa chỉ IPv4 các NIC của máy chủ
 
 ```bash
 ip address show
 ```
 
-Hiển thị địa chỉ IPv4 với NIC của máy chủ có tên `ens33`
+- Hiển thị địa chỉ IPv4 với NIC của máy chủ có tên `ens33`
 
 ```bash
 ip address show dev ens33
 ```
 
-Hiển thị bảng routing của máy chủ
+- Hiển thị bảng routing của máy chủ
 
 ```bash
 ip route list
