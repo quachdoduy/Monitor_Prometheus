@@ -214,14 +214,14 @@ sudo mv /tmp/prometheus-2.53.3.linux-amd64/prometheus /usr/local/bin/
 sudo mv /tmp/prometheus-2.53.3.linux-amd64/promtool /usr/local/bin/
 ```
 
-Đặt chủ sở hữu của các tập tin cấu hình chocho người dùng `prometheus`
+Đặt chủ sở hữu của các tập tin cấu hình chocho người dùng `prometheus`:
 
 ```bash
 sudo chown -R prometheus:prometheus /etc/prometheus/consoles
 sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
 ```
 
-Đặt chủ sở hữu của các tập tin nhị phân cho người dùng `prometheus`
+Đặt chủ sở hữu của các tập tin nhị phân cho người dùng `prometheus`:
 
 ```bash
 sudo chown prometheus:prometheus /usr/local/bin/prometheus
@@ -237,3 +237,60 @@ sudo nano /etc/prometheus/prometheus.yml
 ```
 
 <img alt="Prometheus Config File" src="/images/Prometheus_Config_File.png">
+
+#### Creating a Prometheus Service
+Để quản lý Prometheus bằng systemd, hãy tạo một tệp dịch vụ:
+
+```bash
+sudo nano /etc/systemd/system/prometheus.service
+```
+
+Sau đó điền thông tin như nội dung dưới:
+
+```bash
+[Unit]
+Description=Prometheus Monitoring
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=prometheus
+Group=prometheus
+Type=simple
+ExecStart=/usr/local/bin/prometheus \
+    --config.file=/etc/prometheus/prometheus.yml \
+    --storage.tsdb.path=/var/lib/prometheus/ \
+    --web.console.templates=/etc/prometheus/consoles \
+    --web.console.libraries=/etc/prometheus/console_libraries
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Tiếp theo thực hiện nạp lại systemd:
+
+```bash
+sudo systemctl daemon-reload
+```
+
+Thực hiện Chạy, Kích hoạt, và xem Trạng thái dịch vụ Prometheus:
+
+```bash
+sudo systemctl start prometheus
+sudo systemctl enable prometheus
+sudo systemctl status prometheus
+```
+
+#### Accessing Prometheus in Browser
+Bây giờ Prometheus đã được cài đặt, thiết lập thành công và sẵn sàng để sử dụng.
+Chúng ta có thể truy cập các dịch vụ của nó thông qua giao diện web.
+Ngoài ra, hãy kiểm tra xem cổng 9090 có được bật trong tường lửa không.
+- Sử dụng lệnh bên dưới để kích hoạt tường lửa cho dịch vụ Prometheus.
+
+```bash
+sudo ufw allow 9090/tcp
+```
+
+Bây giờ dịch vụ Prometheus đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào.
+`http://server-IP-or-Hostname:9090.`
+
