@@ -291,6 +291,5 @@ Ngoài ra, hãy kiểm tra xem cổng 9090 có được bật trong tường l�
 sudo ufw allow 9090/tcp
 ```
 
-Bây giờ dịch vụ Prometheus đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào.
-`http://server-IP-or-Hostname:9090.`
+Bây giờ dịch vụ Prometheus đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://server-IP-or-Hostname:9090.`
 
