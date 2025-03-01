@@ -14,7 +14,7 @@
 [![donate with buymeacoffe](https://img.shields.io/badge/Like_it%3F-Donate!-blue?logo=githubsponsors&logoColor=orange&style=flat)](https://buymeacoffee.com/quachdoduy)
 
 <h1 align="center" style="border-bottom: none">
-    <a href="https://github.com/quachdoduy/Monitor_Prometheus" target="_blank"><img alt="Topo" src="/images/prometheuspng"></a><br>Prometheus + Grafana
+    <a href="https://github.com/quachdoduy/Monitor_Prometheus" target="_blank"><img alt="Topo" src="/images/Prometheus.png"></a><br>Prometheus + Grafana
 </h1>
 
 References here:
