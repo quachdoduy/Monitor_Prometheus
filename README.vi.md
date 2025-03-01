@@ -74,8 +74,8 @@ sudo passwd root
 sudo -
 ```
 
-**Sửa file cấu hình SSH.**
-- Mở file cấu hình SSH bằng lệnh.
+**Cho phép root được quyền SSHSSH.**
+- Mở và sửa file cấu hình SSH bằng lệnh.
 
 ```bash
 sudo nano /etc/ssh/sshd_config
