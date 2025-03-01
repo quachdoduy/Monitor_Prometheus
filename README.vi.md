@@ -39,7 +39,7 @@ Dự án được xây dựng trên mô hình ảo hóa (VMWare) với các máy
 5. Tiến hành cài đặt Alert Manager trên Server Prometheus.
 
 ## CÁC BƯỚC CHI TIẾT
-### Setup Server
+## 1.Setup Server
 1. Chuẩn bị các bản cài đặt hệ điều hành máy chủ.
     - Chuẩn bị bản cài đặt Ubuntu Server 24.04 LTS. [Nguồn tải ở đây](https://ubuntu.com/download/server)
     - Chuẩn bị bản cài đặt Windows Server 2019. [Nguồn tải ở đây](https://www.microsoft.com/en-us/evalcenter/download-windows-server-2019)
@@ -147,7 +147,7 @@ ip address show dev ens33
 ip route list
 ```
 
-### Setup Prometheus
+## 2.Setup Prometheus
 Thực hiện trên máy chủ ProSVR-VT.
 
 #### Creating a Prometheus User and Directory
@@ -293,3 +293,4 @@ sudo ufw allow 9090/tcp
 
 Bây giờ dịch vụ Prometheus đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://server-IP-or-Hostname:9090.`
 
+## 3.Setup Node Exporter
