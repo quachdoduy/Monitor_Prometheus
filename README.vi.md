@@ -96,3 +96,46 @@ Thiết lập quyền sở hữu thư mục `/var/lib/prometheus` bằng lệnh 
 ```bash
 sudo chown prometheus:prometheus /var/lib/prometheus
 ```
+
+#### Downloading Prometheus Binary File
+Đến trang [tải xuống Prometheus chính thức](https://prometheus.io/download/) để tìm bản phát hành mới nhất. Tải xuống và giải nén Prometheus:
+Sử dụng lệnh bên dưới, chúng ta có thể tải xuống Prometheus, ở đây chúng ta đang tải xuống phiên bản **Prometheus 2.53.3 LTS** *(Filename: prometheus-2.53.3.linux-amd64.tar.gz)*, bạn sử dụng liên kết trên để tải xuống phiên bản cụ thể.
+
+Bạn cần di chuyển đến thư mục `/tmp`:
+
+```bash
+cd /tmp/
+```
+
+Sử dụng `wget` để tải Prometheus:
+
+```bash
+wget https://github.com/prometheus/prometheus/releases/download/v2.53.3/prometheus-2.53.3.linux-amd64.tar.gz
+```
+
+Sử dụng `tar` để giải nén:
+
+```bash
+tar -xvf prometheus-2.53.3.linux-amd64.tar.gz
+```
+
+Di  chuyển về thư mục gốc `/`:
+
+```bash
+cd /
+```
+
+#### Configuring Prometheus
+Di chuyển các tập tin cấu hình vào các thư mục thích hợp:
+
+```bash
+sudo mv /tmp/prometheus-2.53.3.linux-amd64.tar.gz/console* /etc/prometheus/
+sudo mv /tmp/prometheus-2.53.3.linux-amd64.tar.gz/prometheus.yml /etc/prometheus/
+```
+
+Di chuyển các tệp nhị phân vào các thư mục thích hợp:
+
+```bash
+sudo mv /tmp/prometheus-2.53.3.linux-amd64.tar.gz/prometheus /usr/local/bin/
+sudo mv /tmp/prometheus-2.53.3.linux-amd64.tar.gz/promtool /usr/local/bin/
+```
