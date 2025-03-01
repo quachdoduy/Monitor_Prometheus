@@ -152,6 +152,7 @@ Thực hiện trên máy chủ ProSVR-VT.
 
 #### Creating a Prometheus User and Directory
 Vì một vài lý do bảo mật, Prometheus không chạy như là root user. Do đó cần khởi tạo user cho Prometheus:
+*Chú ý: ta đặt tên cho user này là:* `prometheus`
 
 ```bash
 sudo useradd --no-create-home --shell /bin/false prometheus
@@ -211,5 +212,19 @@ Di chuyển các tệp nhị phân vào các thư mục thích hợp:
 ```bash
 sudo mv /tmp/prometheus-2.53.3.linux-amd64.tar.gz/prometheus /usr/local/bin/
 sudo mv /tmp/prometheus-2.53.3.linux-amd64.tar.gz/promtool /usr/local/bin/
+```
+
+Đặt chủ sở hữu của các tập tin cấu hình chocho người dùng `prometheus`
+
+```bash
+sudo chown -R prometheus:prometheus /etc/prometheus/consoles
+sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
+```
+
+Đặt chủ sở hữu của các tập tin nhị phân cho người dùng `prometheus`
+
+```bash
+sudo chown prometheus:prometheus /usr/local/bin/prometheus
+sudo chown prometheus:prometheus /usr/local/bin/promtool
 ```
 
