@@ -9,7 +9,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/quachdoduy/Monitor_Prometheus?logo=GitHub&style=flat&color=red)](https://github.com/quachdoduy/Monitor_Prometheus/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/quachdoduy/Monitor_Prometheus?logo=GitHub&style=flat&color=green)](https://github.com/quachdoduy/Monitor_Prometheus/network)
 [![GitHub watchers](https://img.shields.io/github/watchers/quachdoduy/Monitor_Prometheus?logo=GitHub&style=flat&color=blue)](https://github.com/quachdoduy/Monitor_Prometheus/watchers)<br/>
-[![required RouterOS version](https://img.shields.io/badge/Prometheus-2.53.3(LTS)-yellow?style=flat)](https://github.com/prometheus/prometheus/blob/main/CHANGELOG.md)
+[![Prometheus version](https://img.shields.io/badge/Prometheus-2.53.3(LTS)-yellow?style=flat)](https://github.com/prometheus/prometheus/blob/main/CHANGELOG.md)
 [![donate with paypal](https://img.shields.io/badge/Like_it%3F-Donate!-green?logo=githubsponsors&logoColor=orange&style=flat)](https://paypal.me/quachdoduy)
 [![donate with buymeacoffe](https://img.shields.io/badge/Like_it%3F-Donate!-blue?logo=githubsponsors&logoColor=orange&style=flat)](https://buymeacoffee.com/quachdoduy)
 
@@ -21,7 +21,7 @@ Nguồn tài liệu tham khảo tại đây:
 - [Prometheus.](https://prometheus.io/docs/introduction/overview/)
 - [Grafana.](https://grafana.com/docs/)
 
-Dự án được xây dựng trên mô hình ảo hóa (VMWare) với các máy chủ cài đặt hệ điều hành Ubuntu Server 24.02 LTS. Danh sách các máy chủ như dưới:
+Dự án được xây dựng trên mô hình ảo hóa (VMWare) với các máy chủ cài đặt hệ điều hành Ubuntu Server 24.04 LTS. Danh sách các máy chủ như dưới:
 - Server Prometheus:
     Thực hiện cài đặt các thành phần:
     - Prometheus.
@@ -41,7 +41,7 @@ Dự án được xây dựng trên mô hình ảo hóa (VMWare) với các máy
 ## CÁC BƯỚC CHI TIẾT
 ### Setup Server
 1. Chuẩn bị các bản cài đặt hệ điều hành máy chủ.
-    - Chuẩn bị bản cài đặt Ubuntu Server 24.02 LTS. [Nguồn tải ở đây](https://ubuntu.com/download/server)
+    - Chuẩn bị bản cài đặt Ubuntu Server 24.04 LTS. [Nguồn tải ở đây](https://ubuntu.com/download/server)
     - Chuẩn bị bản cài đặt Windows Server 2019. [Nguồn tải ở đây](https://www.microsoft.com/en-us/evalcenter/download-windows-server-2019)
 2. Khởi tạo các máy chủ trên VMWare và cài đặt.
     - Prometheus Server:
@@ -68,10 +68,48 @@ sudo passwd root
 
 *Sau đó thực hiện thiết lập mật khẩu cho tài khoản root.*
 
+Sửa file cấu hình SSH.
+- Mở file cấu hình SSH bằng lệnh.
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+- Tìm đến dòng lệnh `#PermitRootLogin prohibit-password` và bỏ dấu `#` và sửa thành `PermitRootLogin yes`
+- Lưu lại file `CTRL + O` và đóng lại `CTRL + x`.
+- Khởi động lại dịch vụ SSH bằng 1 trong 2 lệnh dưới.
+
+```bash
+sudo systemctl restart ssh
+```
+```bash
+sudo service ssh restart
+```
+
+*Kiểm tra lại kết nối SSH với tài khoản root*
+
 Cập nhật hệ thống với các bản cập nhật mới nhất.
 
 ```bash
 sudo apt update && sudo apt upgrade -y
+```
+
+Hiển thị địa chỉ IPv4 các NIC của máy chủ
+
+```bash
+ip address show
+```
+
+Hiển thị địa chỉ IPv4 với NIC của máy chủ có tên `ens33`
+
+```bash
+ip address show dev ens33
+```
+
+Hiển thị bảng routing của máy chủ
+
+```bash
+ip route list
 ```
 
 ### Setup Prometheus
@@ -139,3 +177,4 @@ Di chuyển các tệp nhị phân vào các thư mục thích hợp:
 sudo mv /tmp/prometheus-2.53.3.linux-amd64.tar.gz/prometheus /usr/local/bin/
 sudo mv /tmp/prometheus-2.53.3.linux-amd64.tar.gz/promtool /usr/local/bin/
 ```
+
