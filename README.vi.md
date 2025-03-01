@@ -30,3 +30,39 @@ Dự án được xây dựng trên mô hình ảo hóa (VMWare) với các máy
     Thực hiện cài đặt Grafana để kết nối đến Prometheus.
 - Server Linux và Server Windows:
     Thực hiện cài đặt Node Exporter để kết Prometheus và cung cấp các Metrics.
+
+## CÁC BƯỚC CHÍNH
+1. Cài đặt và hiệu chỉnh các máy chủ như yêu cầu trên nền tảng VMWare.
+2. Tiến hành cài đặt Prometheus trên Server Prometheus.
+3. Tiến hành cài đặt Node Exporter trên Server Linux và Server Windows
+4. Tiến hành cài đặt Grafana trên Server Grafana.
+5. Tiến hành cài đặt Alert Manager trên Server Prometheus.
+
+## CÁC BƯỚC CHI TIẾT
+### Setup Server
+1. Chuẩn bị các bản cài đặt hệ điều hành máy chủ.
+    - Chuẩn bị bản cài đặt Ubuntu Server 24.02 LTS. [Nguồn tải ở đây](https://ubuntu.com/download/server)
+    - Chuẩn bị bản cài đặt Windows Server 2019. [Nguồn tải ở đây](https://www.microsoft.com/en-us/evalcenter/download-windows-server-2019)
+2. Khởi tạo các máy chủ trên VMWare và cài đặt.
+    - Prometheus Server:
+        - HostName: ProSVR-VT
+        - CPU: 4 | RAM: 8GB | HDD: 40GB
+        - NIC: 1 (NAT) | IPv4: 192.168.203.150/24
+    - Grafana Server:
+        - HostName: GraSVR-VT
+        - CPU: 2 | RAM: 4GB | HDD: 40GB
+        - NIC: 1 (NAT) | IPv4: 192.168.203.151/24
+    - Linux Server và Windows Server:
+        - HostName: NuxSVR-VT và MicSVR-VT
+        - CPU: 2 | RAM: 4GB | HDD: 40GB
+        - NIC: 1 (NAT) | IPv4: 192.168.203.161/24 và 192.168.203.162/24
+3. Các chú ý tinh chỉnh sau khi cài đặt.
+    Windows Server 2019: đăng nhập bằng tài khoản quản trị **.\Administrator**. *(Chú ý: môi trường Local không Domain.)*
+    Ubutu 24.02 LTS: đăng nhập bằng tài khoản quản trị **root**. *(Chú ý: mặc định tài khoản root không được kích hoạt, bạn cần đặt mặt khẩu sau đó mới đăng nhập được.)*
+
+Hướng dẫn thiết lập mật khẩu cho tài khoản root.
+
+```bash
+sudo passwd root
+```
+*Sau đó thực hiện thiết lập mật khẩu cho tài khoản root.*
