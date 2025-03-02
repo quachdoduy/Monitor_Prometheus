@@ -137,8 +137,7 @@ ip route list
 *Thực hiện trên máy chủ **ProSVR-VT**.*
 
 #### Creating a Prometheus User and Directory
-- Vì một vài lý do bảo mật, Prometheus không chạy như là root user. Do đó cần khởi tạo user cho Prometheus.
- *Chú ý: ta đặt tên cho user này là:* `prometheus`.
+- Vì một vài lý do bảo mật, Prometheus không chạy như là root user. Do đó cần khởi tạo user cho Prometheus.<br>*Chú ý: ta đặt tên cho user này là:* `prometheus`.
 ```bash
 sudo useradd --no-create-home --shell /bin/false prometheus
 ```
@@ -270,8 +269,7 @@ Như chúng ta có thể thấy bảng điều khiển Prometheus, chúng ta cũ
 *Thực hiện trên máy chủ **NuxSVR-VTVT**.*
 
 #### Creating a Node Exporter User
-- Vì một vài lý do bảo mật, Node Exporter không chạy như là root user. Do đó cần khởi tạo user cho Node Exporter.
-*Chú ý: ta đặt tên cho user này là:* `node_exporter`.
+- Vì một vài lý do bảo mật, Node Exporter không chạy như là root user. Do đó cần khởi tạo user cho Node Exporter.<br>*Chú ý: ta đặt tên cho user này là:* `node_exporter`.
 ```bash
 sudo useradd --no-create-home --shell /bin/false node_exporter
 ```
