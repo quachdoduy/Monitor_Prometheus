@@ -431,6 +431,15 @@ sudo journalctl -u prometheus --no-pager --lines=50
 
 *Chú ý: Phần triển khai Node Exporter trên Windows Server xin được cập nhật lại trong phiên bản sau*
 
+# 3.Setup Node Exporter
+*Thực hiện trên máy chủ **MicSVR-VT**.*
+
+
+
+
+
+
+
+
 # 4.Setup Grafana
 *Thực hiện trên máy chủ **GraSVR-VT**.*
-
