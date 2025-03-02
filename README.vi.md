@@ -393,8 +393,8 @@ Get-Service windows_exporter
 netstat -ano | findstr :9100
 ```
 
-- Bây giờ dịch vụ Windows Exporter đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://MicSVR-VT:9100`.
-<img alt="Node Exporter" src="/images/Node_Exporter_Finish.png">
+- Bây giờ dịch vụ Windows Exporter đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://MicSVR-VT:9100/metrics`.
+<img alt="Node Exporter" src="/images/Windows_Exporter_Finish.png">
 
 ## Configure the Node Exporter as a Prometheus target
 Bây giờ để trích xuất `node_exporter`, hãy hướng dẫn **Prometheus** kết nối bằng cách:
