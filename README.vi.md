@@ -268,6 +268,7 @@ Như chúng ta có thể thấy bảng điều khiển Prometheus, chúng ta cũ
 <img alt="Prometheus Finish" src="/images/Prometheus_Finish_1.png">
 
 # 3.Setup Node Exporter
+## 3.1 Setup Node Exporter on Linux
 *Thực hiện trên máy chủ **NuxSVR-VT**.*
 
 ## Creating a Node Exporter User
@@ -358,6 +359,28 @@ sudo ufw allow 9100/tcp
 Bây giờ dịch vụ Node Exporter đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://NuxSVR-VT:9100`.
 <img alt="Node Exporter" src="/images/Node_Exporter_Finish.png">
 
+## 3.2 Setup Node Exporter on Windows
+*Thực hiện trên máy chủ **MicSVR-VT**.*
+- Trước đây các Node Exporter cho Windows được gọi là **WMI Exporter** nhưng nay được gọi là **Windows Exporter**.
+
+## Download Windows_Exporter và Cài đặt.
+Truy cập trang phát hành chính thức của [Prometheus Windows Exporter](https://github.com/prometheus-community/windows_exporter/releases) và tải bản cài đặt mới nhất.<br>
+*Tại dự án này chúng ta sử dụng Prometheus Windows Exporter version 0.30.4 (Filename: windows_exporter-0.30.4-amd64.exe)*
+
+- Thực hiện cài đặt như bình thường.
+<img alt="Windows Exporter" src="/images/Windows_Exporter_Setup.png">
+
+- Cấu hình.
+  - Cấu hình Metrics mặc định như hình là: **[default]**.
+  - Cấu hình Port mặc định là **9182** ta thay đổi để đồng nhất với dự án là: **9100**.
+<img alt="Windows Exporter" src="/images/Windows_Exporter_Setup_1.png">
+
+- Kiểm tra cấu hình Service.
+  - Cấu hình `Startup Type` thành **Automatic**.
+<img alt="Windows Exporter" src="/images/Windows_Exporter_Setup_2.png">
+
+- Bây giờ dịch vụ Windows Exporter đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://MicSVR-VT:9100`.
+<img alt="Node Exporter" src="/images/Node_Exporter_Finish.png">
 
 ## Configure the Node Exporter as a Prometheus target
 Bây giờ để trích xuất `node_exporter`, hãy hướng dẫn **Prometheus** kết nối bằng cách:
@@ -428,30 +451,6 @@ sudo journalctl -u prometheus --no-pager --lines=50
 
 - Bây giờ truy cập vào dịch vụ Prometheus từ bất kỳ trình duyệt web nào `http://ProSVR-Vt:9090`.
 <img alt="Prometheus connected to Node Exporter" src="/images/prometheus_NodeExporter_Finish.png">
-
-*Chú ý: Phần triển khai Node Exporter trên Windows Server xin được cập nhật lại trong phiên bản sau*
-
-# 3.Setup Node Exporter
-*Thực hiện trên máy chủ **MicSVR-VT**.*
-
-## Download Node Exporter (Windows_Exporter) và Cài đặt.
-Truy cập trang phát hành chính thức của [Prometheus Windows Exporter](https://github.com/prometheus-community/windows_exporter/releases) và tải bản cài đặt mới nhất.<br>
-*Tại dự án này chúng ta sử dụng Prometheus Windows Exporter version 0.30.4 (Filename: windows_exporter-0.30.4-amd64.exe)*
-
-- Thực hiện cài đặt như bình thường.
-<img alt="Windows Exporter" src="/images/Windows_Exporter_Setup.png">
-
-- Cấu hình.
-  - Cấu hình Metrics mặc định như hình là: **[default]**.
-  - Cấu hình Port mặc định là **9182** ta thay đổi để đồng nhất với dự án là: **9100**.
-<img alt="Windows Exporter" src="/images/Windows_Exporter_Setup_1.png">
-
-- Kiểm tra cấu hình Service.
-  - Cấu hình `Startup Type` thành **Automatic**.
-<img alt="Windows Exporter" src="/images/Windows_Exporter_Setup_2.png">
-
-- Bây giờ dịch vụ Windows Exporter đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://MicSVR-VT:9100`.
-<img alt="Node Exporter" src="/images/Node_Exporter_Finish.png">
 
 # 4.Setup Grafana
 *Thực hiện trên máy chủ **GraSVR-VT**.*
