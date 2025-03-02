@@ -345,6 +345,20 @@ sudo systemctl enable node_exporter
 sudo systemctl status node_exporter
 ```
 
+#### Accessing Node Exporter in Browser
+Bây giờ  Node Exporter đã được cài đặt, thiết lập thành công và sẵn sàng để sử dụng.<br>
+Chúng ta có thể truy cập các dịch vụ của nó thông qua giao diện web.<br>
+Ngoài ra, hãy kiểm tra xem cổng 9100 có được bật trong tường lửa không.
+
+- Sử dụng lệnh bên dưới để kích hoạt tường lửa cho dịch vụ Prometheus.
+```bash
+sudo ufw allow 9100/tcp
+```
+
+Bây giờ dịch vụ Node Exporter đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://server-IP-or-Hostname:9100.`
+<img alt="Prometheus Finish" src="/images/Node_Exporter_Finish.png">
+
+
 #### Configure the Node Exporter as a Prometheus target
 Bây giờ để trích xuất `node_exporter`, hãy hướng dẫn **Prometheus** kết nối bằng cách:
 - Thực hiện một thay đổi nhỏ trong tệp `prometheus.yml` **trên máy chủ ProSVR-VT**.
@@ -353,16 +367,15 @@ Bây giờ để trích xuất `node_exporter`, hãy hướng dẫn **Prometheus
 ```bash
 sudo nano /etc/prometheus/prometheus.yml
 ```
+*Chú ý: Nội dung nguyên bản như hình dưới*
+<img alt="Prometheus Finish" src="/images/Prometheus_yml_Original.png">
 
-- Sửa nội dung fie `prometheus.yml` như dưới.
+- Tìm đến khối dòng lệnh.
 ```bash
-- job_name: 'Node_Exporter'
-    scrape_interval: 5s
+scrape_configs:
+  - job_name: "prometheus"
     static_configs:
-      - targets: ['localhost:9100']
-      - targets: ['<NixSVR-VT_1 IP>:9100']
-      - targets: ['<NixSVR-VT_2 IP>:9100']
-      - targets: ['<NixSVR-VT_3 IP>:9100']
-      - targets: ['<NixSVR-VT_4 IP>:9100']
+      - targets: ["localhost:9090"]
 ```
-*Chú ý: bạn có bao nhiêu Node Exporter thì khai báo bấy nhiêu dòngdòng
+- Tiếp tục khai báo các dòng lệnh `targets:` tiếp theo tương ứng với mỗi Node Exporter.
+- Lưu lại file `CTRL + O` và đóng lại `CTRL + x`.
