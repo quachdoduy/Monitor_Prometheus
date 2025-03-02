@@ -148,7 +148,7 @@ ip route list
 ```
 
 ## 2.Setup Prometheus
-Thực hiện trên máy chủ ProSVR-VT.
+*Thực hiện trên máy chủ **ProSVR-VT**.*
 
 #### Creating a Prometheus User and Directory
 Vì một vài lý do bảo mật, Prometheus không chạy như là root user. Do đó cần khởi tạo user cho Prometheus:
@@ -297,7 +297,7 @@ Như chúng ta có thể thấy bảng điều khiển Prometheus, chúng ta cũ
 <img alt="Prometheus Finish" src="/images/Prometheus_Finish_1.png">
 
 ## 3.Setup Node Exporter
-Thực hiện trên máy chủ NuxSVR-VTVT.
+*Thực hiện trên máy chủ **NuxSVR-VTVT**.*
 
 #### Creating a Node Exporter User
 Vì một vài lý do bảo mật, Node Exporter không chạy như là root user. Do đó cần khởi tạo user cho Node Exporter:
