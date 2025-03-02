@@ -193,7 +193,7 @@ Sử dụng `tar` để giải nén:
 tar -xvf prometheus-2.53.3.linux-amd64.tar.gz
 ```
 
-Di  chuyển về thư mục gốc `/`:
+Di chuyển về thư mục gốc `/`:
 
 ```bash
 cd /
@@ -299,5 +299,48 @@ Như chúng ta có thể thấy bảng điều khiển Prometheus, chúng ta cũ
 ## 3.Setup Node Exporter
 Thực hiện trên máy chủ NuxSVR-VTVT.
 
+#### Creating a Node Exporter User
+Vì một vài lý do bảo mật, Node Exporter không chạy như là root user. Do đó cần khởi tạo user cho Node Exporter:
+*Chú ý: ta đặt tên cho user này là:* `node_exporter`
+
+```bash
+sudo useradd --no-create-home --shell /bin/false node_exporter
+```
+hoặc
+```bash
+sudo useradd -rs /bin/false node_exporter
+```
+
+#### Download Node Exporter
 Truy cập trang phát hành chính thức của [Prometheus Node Exporter](https://github.com/prometheus/node_exporter/releases/) và sao chép liên kết phiên bản mới nhất của gói Node Exporter theo loại hệ điều hành của bạn.
 Tại dự án này chúng ta sử dụng Prometheus Node Exporter version 1.9.0 (Filename: node_exporter-1.9.0.darwin-amd64.tar.gz)
+
+- Bạn cần di chuyển đến thư mục `/tmp`:
+
+```bash
+cd /tmp/
+```
+
+- Sử dụng `wget` để tải Node ExplorerExplorer:
+
+```bash
+wget https://github.com/prometheus/node_exporter/releases/download/v1.9.0/node_exporter-1.9.0.darwin-amd64.tar.gz
+```
+
+- Sử dụng `tar` để giải nén:
+
+```bash
+tar -xvf node_exporter-1.9.0.darwin-amd64.tar.gz
+```
+
+- Di chuyển về thư mục gốc `/`:
+
+```bash
+cd /
+```
+
+- Di chuyển tệp nhị phân của **Node Exporter** đến vị trí `/usr/local/bin`:
+
+```bash
+sudo mv /tmp/node_exporter-*.*-amd64/node_exporter /usr/local/bin/
+```
