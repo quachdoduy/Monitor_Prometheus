@@ -281,7 +281,9 @@ sudo useradd -rs /bin/false node_exporter
 
 #### Download Node Exporter
 Truy cập trang phát hành chính thức của [Prometheus Node Exporter](https://github.com/prometheus/node_exporter/releases/) và sao chép liên kết phiên bản mới nhất của gói Node Exporter theo loại hệ điều hành của bạn.
-Tại dự án này chúng ta sử dụng Prometheus Node Exporter version 1.9.0 (Filename: node_exporter-1.9.0.darwin-amd64.tar.gz)
+Tại dự án này chúng ta sử dụng Prometheus Node Exporter version 1.9.0 (Filename: node_exporter-1.9.0.linux-amd64.tar.gz)
+
+Chú ý: *Bạn hãy chọn đúng phiên bản phù hợp với máy chủ cần giám sát*
 
 - Bạn cần di chuyển đến thư mục `/tmp`.
 ```bash
@@ -290,7 +292,7 @@ cd /tmp/
 
 - Sử dụng `wget` để tải Node Exporter.
 ```bash
-wget https://github.com/prometheus/node_exporter/releases/download/v1.9.0/node_exporter-1.9.0.darwin-amd64.tar.gz
+wget https://github.com/prometheus/node_exporter/releases/download/v1.9.0/node_exporter-1.9.0.linux-amd64.tar.gz
 ```
 
 - Sử dụng `tar` để giải nén.
