@@ -138,7 +138,7 @@ ip route list
 
 #### Creating a Prometheus User and Directory
 - Vì một vài lý do bảo mật, Prometheus không chạy như là root user. Do đó cần khởi tạo user cho Prometheus.
-*Chú ý: ta đặt tên cho user này là:* `prometheus`.
+ *Chú ý: ta đặt tên cho user này là:* `prometheus`.
 ```bash
 sudo useradd --no-create-home --shell /bin/false prometheus
 ```
