@@ -262,7 +262,7 @@ Ngoài ra, hãy kiểm tra xem cổng 9090 có được bật trong tường l�
 sudo ufw allow 9090/tcp
 ```
 
-Bây giờ dịch vụ Prometheus đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://server-IP-or-Hostname:9090.`
+Bây giờ dịch vụ Prometheus đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://ProSVR-VT:9090.`
 <img alt="Prometheus Finish" src="/images/Prometheus_Finish.png">
 Như chúng ta có thể thấy bảng điều khiển Prometheus, chúng ta cũng có thể kiểm tra mục **Targets** có thể thấy trạng thái hiện tại là **UP** và chúng ta cũng có thể thấy lần cào cuối cùng.
 <img alt="Prometheus Finish" src="/images/Prometheus_Finish_1.png">
@@ -355,7 +355,7 @@ Ngoài ra, hãy kiểm tra xem cổng 9100 có được bật trong tường l�
 sudo ufw allow 9100/tcp
 ```
 
-Bây giờ dịch vụ Node Exporter đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://server-IP-or-Hostname:9100.`
+Bây giờ dịch vụ Node Exporter đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://NuxSVR-vtvt:9100.`
 <img alt="Prometheus Finish" src="/images/Node_Exporter_Finish.png">
 
 
@@ -416,3 +416,15 @@ scrape_configs:
           - "192.168.203.168:9100"
 ```
 
+- Bây giờ hãy khởi động lại dịch vụ Prometheus.
+```bash
+sudo systemctl restart prometheus
+```
+
+- Hoặc kiểm tra LOG nếu có lỗi.
+```bash
+sudo journalctl -u prometheus --no-pager --lines=50
+```
+
+- Bây giờ truy cập vào dịch vụ Prometheus từ bất kỳ trình duyệt web nào `http://ProSVR-Vt:9090.`
+<img alt="Prometheus Finish" src="/images/prometheus_NodeExporter_Finish.png">
