@@ -32,15 +32,15 @@ Danh sách các máy chủ như dưới:
 - Server Linux và Server Windows:
     Thực hiện cài đặt Node Exporter để kết Prometheus và cung cấp các Metrics.
 
-## CÁC BƯỚC CHÍNH
+# CÁC BƯỚC CHÍNH
 1. Cài đặt và hiệu chỉnh các máy chủ như yêu cầu trên nền tảng VMWare.
 2. Tiến hành cài đặt Prometheus trên Server Prometheus.
 3. Tiến hành cài đặt Node Exporter trên Server Linux và Server Windows
 4. Tiến hành cài đặt Grafana trên Server Grafana.
 5. Tiến hành cài đặt Alert Manager trên Server Prometheus.
 
-## CÁC BƯỚC CHI TIẾT
-## 1.Setup Server
+# CÁC BƯỚC CHI TIẾT
+# 1.Setup Server
 1. Chuẩn bị các bản cài đặt hệ điều hành máy chủ.
     - Chuẩn bị bản cài đặt Ubuntu Server 24.04 LTS. [Nguồn tải ở đây](https://ubuntu.com/download/server)
     - Chuẩn bị bản cài đặt Windows Server 2019. [Nguồn tải ở đây](https://www.microsoft.com/en-us/evalcenter/download-windows-server-2019)
@@ -134,10 +134,10 @@ ip address show dev ens33
 ip route list
 ```
 
-## 2.Setup Prometheus
+# 2.Setup Prometheus
 *Thực hiện trên máy chủ **ProSVR-VT**.*
 
-#### Creating a Prometheus User and Directory
+## Creating a Prometheus User and Directory
 - Vì một vài lý do bảo mật, Prometheus không chạy như là root user. Do đó cần khởi tạo user cho Prometheus.<br>*Chú ý: ta đặt tên cho user này là:* `prometheus`.
 ```bash
 sudo useradd --no-create-home --shell /bin/false prometheus
@@ -154,7 +154,7 @@ sudo mkdir /var/lib/prometheus
 sudo chown prometheus:prometheus /var/lib/prometheus
 ```
 
-#### Downloading Prometheus Binary File
+## Downloading Prometheus Binary File
 Đến trang [tải xuống Prometheus chính thức](https://prometheus.io/download/) để tìm bản phát hành mới nhất. Tải xuống và giải nén Prometheus:<br>
 Sử dụng lệnh bên dưới, chúng ta có thể tải xuống Prometheus, ở đây chúng ta đang tải xuống phiên bản **Prometheus 2.53.3 LTS** *(Filename: prometheus-2.53.3.linux-amd64.tar.gz)*, bạn sử dụng liên kết trên để tải xuống phiên bản cụ thể.
 
@@ -178,7 +178,7 @@ tar -xvf prometheus-2.53.3.linux-amd64.tar.gz
 cd /
 ```
 
-#### Configuring Prometheus
+## Configuring Prometheus
 - Di chuyển các tập tin cấu hình vào các thư mục thích hợp.
 ```bash
 sudo mv /tmp/prometheus-2.53.3.linux-amd64/console*/ /etc/prometheus/
@@ -203,7 +203,7 @@ sudo chown prometheus:prometheus /usr/local/bin/prometheus
 sudo chown prometheus:prometheus /usr/local/bin/promtool
 ```
 
-#### Prometheus configuration file
+## Prometheus configuration file
 Chúng tôi đã sao chép tệp `prometheus.yml` từ `/tmp/prometheus-2.53.3.linux-amd64/` vào thư mục `/etc/prometheus` ở bước trên.<br>
 Bạn hãy kiểm tra xem nó có tồn tại không.<br>
 File này sẽ cần chỉnh sửa và sẽ được hướng dẫn trong phần sau.
@@ -213,7 +213,7 @@ sudo nano /etc/prometheus/prometheus.yml
 
 <img alt="Prometheus Config File" src="/images/Prometheus_Config_File.png">
 
-#### Creating a Prometheus Service
+## Creating a Prometheus Service
 - Để quản lý Prometheus bằng systemd, hãy tạo một tệp dịch vụ.
 ```bash
 sudo nano /etc/systemd/system/prometheus.service
@@ -252,7 +252,7 @@ sudo systemctl enable prometheus
 sudo systemctl status prometheus
 ```
 
-#### Accessing Prometheus in Browser
+## Accessing Prometheus in Browser
 Bây giờ Prometheus đã được cài đặt, thiết lập thành công và sẵn sàng để sử dụng.<br>
 Chúng ta có thể truy cập các dịch vụ của nó thông qua giao diện web.<br>
 Ngoài ra, hãy kiểm tra xem cổng 9090 có được bật trong tường lửa không.
@@ -267,10 +267,10 @@ Bây giờ dịch vụ Prometheus đã sẵn sàng chạy và chúng ta có th�
 Như chúng ta có thể thấy bảng điều khiển Prometheus, chúng ta cũng có thể kiểm tra mục **Targets** có thể thấy trạng thái hiện tại là **UP** và chúng ta cũng có thể thấy lần cào cuối cùng.
 <img alt="Prometheus Finish" src="/images/Prometheus_Finish_1.png">
 
-## 3.Setup Node Exporter
+# 3.Setup Node Exporter
 *Thực hiện trên máy chủ **NuxSVR-VT**.*
 
-#### Creating a Node Exporter User
+## Creating a Node Exporter User
 - Vì một vài lý do bảo mật, Node Exporter không chạy như là root user. Do đó cần khởi tạo user cho Node Exporter.<br>*Chú ý: ta đặt tên cho user này là:* `node_exporter`.
 ```bash
 sudo useradd --no-create-home --shell /bin/false node_exporter
@@ -280,7 +280,7 @@ hoặc
 sudo useradd -rs /bin/false node_exporter
 ```
 
-#### Download Node Exporter
+## Download Node Exporter
 Truy cập trang phát hành chính thức của [Prometheus Node Exporter](https://github.com/prometheus/node_exporter/releases/) và sao chép liên kết phiên bản mới nhất của gói Node Exporter theo loại hệ điều hành của bạn.<br>
 Tại dự án này chúng ta sử dụng Prometheus Node Exporter version 1.9.0 (Filename: node_exporter-1.9.0.linux-amd64.tar.gz)
 
@@ -311,7 +311,7 @@ cd /
 sudo mv /tmp/node_exporter-1.9.0.linux-amd64/node_exporter /usr/local/bin/
 ```
 
-#### Creating Node Exporter Systemd service
+## Creating Node Exporter Systemd service
 - Tạo tệp dịch vụ `node_exporter` trong thư mục `/etc/systemd/system`.
 ```bash
 sudo nano /etc/systemd/system/node_exporter.service
@@ -345,7 +345,7 @@ sudo systemctl enable node_exporter
 sudo systemctl status node_exporter
 ```
 
-#### Accessing Node Exporter in Browser
+## Accessing Node Exporter in Browser
 Bây giờ  Node Exporter đã được cài đặt, thiết lập thành công và sẵn sàng để sử dụng.<br>
 Chúng ta có thể truy cập các dịch vụ của nó thông qua giao diện web.<br>
 Ngoài ra, hãy kiểm tra xem cổng 9100 có được bật trong tường lửa không.
@@ -359,7 +359,7 @@ Bây giờ dịch vụ Node Exporter đã sẵn sàng chạy và chúng ta có t
 <img alt="Prometheus Finish" src="/images/Node_Exporter_Finish.png">
 
 
-#### Configure the Node Exporter as a Prometheus target
+## Configure the Node Exporter as a Prometheus target
 Bây giờ để trích xuất `node_exporter`, hãy hướng dẫn **Prometheus** kết nối bằng cách:
 - Thực hiện một thay đổi nhỏ trong tệp `prometheus.yml` **trên máy chủ ProSVR-VT**.
 
@@ -431,6 +431,6 @@ sudo journalctl -u prometheus --no-pager --lines=50
 
 *Chú ý: Phần triển khai Node Exporter trên Windows Server xin được cập nhật lại trong phiên bản sau*
 
-## 4.Setup Grafana
+# 4.Setup Grafana
 *Thực hiện trên máy chủ **GraSVR-VT**.*
 
