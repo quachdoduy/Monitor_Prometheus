@@ -305,7 +305,7 @@ cd /
 
 - Di chuyển tệp nhị phân của **Node Exporter** đến vị trí `/usr/local/bin`.
 ```bash
-sudo mv /tmp/node_exporter-*.*-amd64/node_exporter /usr/local/bin/
+sudo mv /tmp/node_exporter-1.9.0.darwin-amd64/node_exporter /usr/local/bin/
 ```
 
 #### Creating Node Exporter Systemd service
@@ -327,7 +327,6 @@ Type=simple
 ExecStart=/usr/local/bin/node_exporter
 
 [Install]
-
 WantedBy=multi-user.target
 ```
 
