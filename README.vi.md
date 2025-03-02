@@ -27,10 +27,16 @@ Danh sách các máy chủ như dưới:
     Thực hiện cài đặt các thành phần:
     - Prometheus.
     - Alert Manager. *(Tùy điều kiện triển khai, chúng ta có thể tách rời Alert Manager độc lập)*.
+- Server Linux:
+    Thực hiện cài đặt Node Exporter để kết Prometheus và cung cấp các Metrics.
+- Server Windows:
+    Thực hiện cài đặt Windows Exporter (cũ là: WMI Exporter) để kết Prometheus và cung cấp các Metrics.
+- Server SNMP Exporter:
+    Thực hiện cài đặt SNMP Exporter để kết nối giữa Prometheus và các thiết bị Network đã cấu hình SNMP.
+- Server Alert Manager:
+    Thực hiện cài đặt Alert Manager để kết nối giữa Prometheus và các ứng dụng cần gửi cảnh báo.
 - Server Grafana:
     Thực hiện cài đặt Grafana để kết nối đến Prometheus.
-- Server Linux và Server Windows:
-    Thực hiện cài đặt Node Exporter để kết Prometheus và cung cấp các Metrics.
 
 # CÁC BƯỚC CHÍNH
 1. Cài đặt và hiệu chỉnh các máy chủ như yêu cầu trên nền tảng VMWare.
