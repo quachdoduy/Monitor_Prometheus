@@ -441,9 +441,9 @@ Truy cập trang phát hành chính thức của [Prometheus Windows Exporter](h
 - Thực hiện cài đặt như bình thường.
 <img alt="Windows Exporter" src="/images/Windows_Exporter_Setup.png">
 
-- Cấu hình Port.
-  - Mặc định Port của Windows Exporter là: **9182**.
-  - Với dự án này ta thực hiện sử dụng đồng nhất Port với Node Exporter là: **9100**.
+- Cấu hình.
+  - Cấu hình Metrics mặc định như hình là: **[default]**.
+  - Cấu hình Port mặc định là **9182** ta thay đổi để đồng nhất với dự án là: **9100**.
 <img alt="Windows Exporter" src="/images/Windows_Exporter_Setup_1.png">
 
 - Kiểm tra cấu hình Service.
