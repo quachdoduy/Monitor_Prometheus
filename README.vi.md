@@ -365,9 +365,12 @@ Bây giờ dịch vụ Node Exporter đã sẵn sàng chạy và chúng ta có t
 
 ## Download Windows_Exporter và Cài đặt.
 Truy cập trang phát hành chính thức của [Prometheus Windows Exporter](https://github.com/prometheus-community/windows_exporter/releases) và tải bản cài đặt mới nhất.<br>
-*Tại dự án này chúng ta sử dụng Prometheus Windows Exporter version 0.30.4 (Filename: windows_exporter-0.30.4-amd64.exe)*
+*Tại dự án này chúng ta sử dụng Prometheus Windows Exporter version 0.30.4 (Filename: windows_exporter-0.30.4-amd64.msi)*
 
-- Thực hiện cài đặt như bình thường.
+- Thực hiện cài đặt bằng PowerShell.
+```bash
+msiexec /i C:\Users\Administrator\Downloads\windows_exporter-0.30.4-amd64.msi
+```
 <img alt="Windows Exporter" src="/images/Windows_Exporter_Setup.png">
 
 - Cấu hình.
@@ -375,9 +378,20 @@ Truy cập trang phát hành chính thức của [Prometheus Windows Exporter](h
   - Cấu hình Port mặc định là **9182** ta thay đổi để đồng nhất với dự án là: **9100**.
 <img alt="Windows Exporter" src="/images/Windows_Exporter_Setup_1.png">
 
-- Kiểm tra cấu hình Service.
-  - Cấu hình `Startup Type` thành **Automatic**.
-<img alt="Windows Exporter" src="/images/Windows_Exporter_Setup_2.png">
+- Thiết lập mở FireWall cho Windows Exporter bằng PowerShell.
+```bash
+New-NetFirewallRule -DisplayName "Allow Windows Exporter" -Direction Inbound -Protocol TCP -LocalPort 9100 -Action Allow
+```
+
+- Kiểm tra Service bằng PowerShell.
+```bash
+Get-Service windows_exporter
+```
+
+- Kiểm tra Port lắng nghe của Windows Exporter bằng PowerShell.
+```bash
+netstat -ano | findstr :9100
+```
 
 - Bây giờ dịch vụ Windows Exporter đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://MicSVR-VT:9100`.
 <img alt="Node Exporter" src="/images/Node_Exporter_Finish.png">
