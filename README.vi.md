@@ -355,8 +355,8 @@ Ngoài ra, hãy kiểm tra xem cổng 9100 có được bật trong tường l�
 sudo ufw allow 9100/tcp
 ```
 
-Bây giờ dịch vụ Node Exporter đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://NuxSVR-vtvt:9100.`
-<img alt="Prometheus Finish" src="/images/Node_Exporter_Finish.png">
+Bây giờ dịch vụ Node Exporter đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://NuxSVR-VT:9100`.
+<img alt="Node Exporter" src="/images/Node_Exporter_Finish.png">
 
 
 ## Configure the Node Exporter as a Prometheus target
@@ -368,7 +368,7 @@ Bây giờ để trích xuất `node_exporter`, hãy hướng dẫn **Prometheus
 sudo nano /etc/prometheus/prometheus.yml
 ```
 *Chú ý: Nội dung nguyên bản như hình dưới*
-<img alt="Prometheus Finish" src="/images/Prometheus_yml_Original.png">
+<img alt="Connect Prometheus to Node Exporter" src="/images/Prometheus_yml_Original.png">
 
 - Nội dung thay đổi đề xuất như dưới.<br>
 *Chú ý: cần đọc kỹ tài liệu của Prometheus để hiểu rõ và cấu hình file này theo đúng yêu cầu*
@@ -426,20 +426,32 @@ sudo systemctl restart prometheus
 sudo journalctl -u prometheus --no-pager --lines=50
 ```
 
-- Bây giờ truy cập vào dịch vụ Prometheus từ bất kỳ trình duyệt web nào `http://ProSVR-Vt:9090.`
-<img alt="Prometheus Finish" src="/images/prometheus_NodeExporter_Finish.png">
+- Bây giờ truy cập vào dịch vụ Prometheus từ bất kỳ trình duyệt web nào `http://ProSVR-Vt:9090`.
+<img alt="Prometheus connected to Node Exporter" src="/images/prometheus_NodeExporter_Finish.png">
 
 *Chú ý: Phần triển khai Node Exporter trên Windows Server xin được cập nhật lại trong phiên bản sau*
 
 # 3.Setup Node Exporter
 *Thực hiện trên máy chủ **MicSVR-VT**.*
 
+## Download Node Exporter (Windows_Exporter) và Cài đặt.
+Truy cập trang phát hành chính thức của [Prometheus Windows Exporter](https://github.com/prometheus-community/windows_exporter/releases) và tải bản cài đặt mới nhất.<br>
+*Tại dự án này chúng ta sử dụng Prometheus Windows Exporter version 0.30.4 (Filename: windows_exporter-0.30.4-amd64.exe)*
 
+- Thực hiện cài đặt như bình thường.
+<img alt="Windows Exporter" src="/images/Windows_Exporter_Setup.png">
 
+- Cấu hình Port.
+  - Mặc định Port của Windows Exporter là: **9182**.
+  - Với dự án này ta thực hiện sử dụng đồng nhất Port với Node Exporter là: **9100**.
+<img alt="Windows Exporter" src="/images/Windows_Exporter_Setup_1.png">
 
+- Kiểm tra cấu hình Service.
+  - Cấu hình `Startup Type` thành **Automatic**.
+<img alt="Windows Exporter" src="/images/Windows_Exporter_Setup_2.png">
 
-
-
+- Bây giờ dịch vụ Windows Exporter đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://MicSVR-VT:9100`.
+<img alt="Node Exporter" src="/images/Node_Exporter_Finish.png">
 
 # 4.Setup Grafana
 *Thực hiện trên máy chủ **GraSVR-VT**.*
