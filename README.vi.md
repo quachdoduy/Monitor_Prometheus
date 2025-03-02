@@ -204,7 +204,8 @@ sudo chown prometheus:prometheus /usr/local/bin/promtool
 
 #### Prometheus configuration file
 Chúng tôi đã sao chép tệp 'prometheus.yml' từ '/tmp/prometheus-2.53.3.linux-amd64/' vào thư mục '/etc/prometheus' ở bước trên.
-Bạn hãy kiểm tra xem nó có tồn tại và trông giống như bên dưới không rồi sửa đổi theo yêu cầu của bạn.
+Bạn hãy kiểm tra xem nó có tồn tại không.
+File này sẽ cần chỉnh sửa và sẽ được hướng dẫn trong phần sau.
 ```bash
 sudo nano /etc/prometheus/prometheus.yml
 ```
@@ -287,7 +288,7 @@ Tại dự án này chúng ta sử dụng Prometheus Node Exporter version 1.9.0
 cd /tmp/
 ```
 
-- Sử dụng `wget` để tải Node Explorer.
+- Sử dụng `wget` để tải Node Exporter.
 ```bash
 wget https://github.com/prometheus/node_exporter/releases/download/v1.9.0/node_exporter-1.9.0.darwin-amd64.tar.gz
 ```
@@ -306,3 +307,60 @@ cd /
 ```bash
 sudo mv /tmp/node_exporter-*.*-amd64/node_exporter /usr/local/bin/
 ```
+
+#### Creating Node Exporter Systemd service
+- Tạo tệp dịch vụ `node_exporter` trong thư mục `/etc/systemd/system`.
+```bash
+sudo nano /etc/systemd/system/node_exporter.service
+```
+
+- Sau đó điền thông tin như nội dung dưới.
+```bash
+[Unit]
+Description=Node Exporter
+After=network.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+
+WantedBy=multi-user.target
+```
+
+- Tiếp theo thực hiện nạp lại systemd.
+```bash
+sudo systemctl daemon-reload
+```
+
+- Thực hiện Chạy, Kích hoạt, và xem Trạng thái dịch vụ Node Exporter.
+```bash
+sudo systemctl start node_exporter
+sudo systemctl enable node_exporter
+sudo systemctl status node_exporter
+```
+
+#### Configure the Node Exporter as a Prometheus target
+Bây giờ để trích xuất `node_exporter`, hãy hướng dẫn **Prometheus** kết nối bằng cách:
+- Thực hiện một thay đổi nhỏ trong tệp `prometheus.yml` **trên máy chủ ProSVR-VT**.
+
+- Mở và sửa file cấu hình `prometheus.yml` bằng lệnh.
+```bash
+sudo nano /etc/prometheus/prometheus.yml
+```
+
+- Sửa nội dung fie `prometheus.yml` như dưới.
+```bash
+- job_name: 'Node_Exporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9100']
+      - targets: ['<NixSVR-VT_1 IP>:9100']
+      - targets: ['<NixSVR-VT_2 IP>:9100']
+      - targets: ['<NixSVR-VT_3 IP>:9100']
+      - targets: ['<NixSVR-VT_4 IP>:9100']
+```
+*Chú ý: bạn có bao nhiêu Node Exporter thì khai báo bấy nhiêu dòngdòng
