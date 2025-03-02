@@ -371,7 +371,7 @@ Truy cập trang phát hành chính thức của [Prometheus Windows Exporter](h
 <img alt="Windows Exporter" src="/images/Windows_Exporter_Setup.png">
 
 - Cấu hình.
-  - Cấu hình Metrics mặc định như hình là: **[default]**.
+  - Cấu hình Metrics mặc định như hình là: **[defaults]**.
   - Cấu hình Port mặc định là **9182** ta thay đổi để đồng nhất với dự án là: **9100**.
 <img alt="Windows Exporter" src="/images/Windows_Exporter_Setup_1.png">
 
