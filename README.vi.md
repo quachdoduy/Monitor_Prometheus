@@ -297,7 +297,7 @@ wget https://github.com/prometheus/node_exporter/releases/download/v1.9.0/node_e
 
 - Sử dụng `tar` để giải nén.
 ```bash
-tar -xvf node_exporter-1.9.0.darwin-amd64.tar.gz
+tar -xvf node_exporter-1.9.0.linux-amd64.tar.gz
 ```
 
 - Di chuyển về thư mục gốc `/`.
@@ -307,7 +307,7 @@ cd /
 
 - Di chuyển tệp nhị phân của **Node Exporter** đến vị trí `/usr/local/bin`.
 ```bash
-sudo mv /tmp/node_exporter-1.9.0.darwin-amd64/node_exporter /usr/local/bin/
+sudo mv /tmp/node_exporter-1.9.0.linux-amd64/node_exporter /usr/local/bin/
 ```
 
 #### Creating Node Exporter Systemd service
