@@ -62,21 +62,18 @@ Dự án được xây dựng trên mô hình ảo hóa (VMWare) với các máy
 
 **Kích hoạt tài khoản root**
 - Thiết lập mật khẩu cho tài khoản root.
-
 ```bash
 sudo passwd root
 ```
-
 *Sau đó thực hiện thiết lập mật khẩu cho tài khoản root.*
-- Chuyển qua tài khoản root.
 
+- Chuyển qua tài khoản root.
 ```bash
 sudo -
 ```
 
 **Cho phép root được quyền SSH.**
 - Mở và sửa file cấu hình SSH bằng lệnh.
-
 ```bash
 sudo nano /etc/ssh/sshd_config
 ```
@@ -85,64 +82,53 @@ sudo nano /etc/ssh/sshd_config
 - Tìm đến dòng lệnh `#PasswordAuthentication yes` và bỏ dấu comment `#` thành `PasswordAuthentication yes`
 - Lưu lại file `CTRL + O` và đóng lại `CTRL + x`.
 - Khởi động lại dịch vụ SSH bằng 1 trong 2 lệnh dưới.
-
 ```bash
 sudo systemctl restart ssh
 ```
 ```bash
 sudo service ssh restart
 ```
-
 *Kiểm tra lại kết nối SSH với tài khoản root*
 
 **Xóa tài khoản quản trị được khởi tạo lúc cài đặt**
-- Kiểm tra lại quyền `sudo` của tài khoản quản trị lúc cài đặt `nuxadmin`
-
+- Kiểm tra lại quyền `sudo` của tài khoản quản trị lúc cài đặt `nuxadmin`.
 ```bash
 sudo cat /etc/sudoers.d/nuxadmin
 ```
 
 - Nếu có bạn nên xóa file này trước.
-
 ```bash
 sudo rm /etc/sudoers.d/nuxadmin
 ```
 
 - Kiểm tra danh sách người dùng trước khi xóa.
-
 ```bash
 cat /etc/passwd | grep nuxadmin
 ```
 
 - Thực hiện xóa quản trị.
-
 ```bash
 userdel -r nuxadmin
 ```
-
 *Bạn nhớ kiểm tra lại danh sách người dùng sau khi xóa*
 
 **Cập nhật hệ thống với các bản cập nhật mới nhất.**
-
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
 
 **Các câu lệnh kiểm tra khác**
-- Hiển thị địa chỉ IPv4 các NIC của máy chủ
-
+- Hiển thị địa chỉ IPv4 các NIC của máy chủ.
 ```bash
 ip address show
 ```
 
-- Hiển thị địa chỉ IPv4 với NIC của máy chủ có tên `ens33`
-
+- Hiển thị địa chỉ IPv4 với NIC của máy chủ có tên `ens33`.
 ```bash
 ip address show dev ens33
 ```
 
-- Hiển thị bảng routing của máy chủ
-
+- Hiển thị bảng routing của máy chủ.
 ```bash
 ip route list
 ```
@@ -151,22 +137,19 @@ ip route list
 *Thực hiện trên máy chủ **ProSVR-VT**.*
 
 #### Creating a Prometheus User and Directory
-Vì một vài lý do bảo mật, Prometheus không chạy như là root user. Do đó cần khởi tạo user cho Prometheus:
-*Chú ý: ta đặt tên cho user này là:* `prometheus`
-
+- Vì một vài lý do bảo mật, Prometheus không chạy như là root user. Do đó cần khởi tạo user cho Prometheus.
+*Chú ý: ta đặt tên cho user này là:* `prometheus`.
 ```bash
 sudo useradd --no-create-home --shell /bin/false prometheus
 ```
 
-Tạo các thư mục mà chúng ta sẽ lưu trữ các tập tin cấu hình và thư viện:
-
+- Tạo các thư mục mà chúng ta sẽ lưu trữ các tập tin cấu hình và thư viện.
 ```bash
 sudo mkdir /etc/prometheus
 sudo mkdir /var/lib/prometheus
 ```
 
-Thiết lập quyền sở hữu thư mục `/var/lib/prometheus` bằng lệnh bên dưới:
-
+- Thiết lập quyền sở hữu thư mục `/var/lib/prometheus` bằng lệnh bên dưới.
 ```bash
 sudo chown prometheus:prometheus /var/lib/prometheus
 ```
@@ -175,54 +158,46 @@ sudo chown prometheus:prometheus /var/lib/prometheus
 Đến trang [tải xuống Prometheus chính thức](https://prometheus.io/download/) để tìm bản phát hành mới nhất. Tải xuống và giải nén Prometheus:
 Sử dụng lệnh bên dưới, chúng ta có thể tải xuống Prometheus, ở đây chúng ta đang tải xuống phiên bản **Prometheus 2.53.3 LTS** *(Filename: prometheus-2.53.3.linux-amd64.tar.gz)*, bạn sử dụng liên kết trên để tải xuống phiên bản cụ thể.
 
-Bạn cần di chuyển đến thư mục `/tmp`:
-
+- Bạn cần di chuyển đến thư mục `/tmp`.
 ```bash
 cd /tmp/
 ```
 
-Sử dụng `wget` để tải Prometheus:
-
+- Sử dụng `wget` để tải Prometheus.
 ```bash
 wget https://github.com/prometheus/prometheus/releases/download/v2.53.3/prometheus-2.53.3.linux-amd64.tar.gz
 ```
 
-Sử dụng `tar` để giải nén:
-
+- Sử dụng `tar` để giải nén.
 ```bash
 tar -xvf prometheus-2.53.3.linux-amd64.tar.gz
 ```
 
-Di chuyển về thư mục gốc `/`:
-
+- Di chuyển về thư mục gốc `/`.
 ```bash
 cd /
 ```
 
 #### Configuring Prometheus
-Di chuyển các tập tin cấu hình vào các thư mục thích hợp:
-
+- Di chuyển các tập tin cấu hình vào các thư mục thích hợp.
 ```bash
 sudo mv /tmp/prometheus-2.53.3.linux-amd64/console*/ /etc/prometheus/
 sudo mv /tmp/prometheus-2.53.3.linux-amd64/prometheus.yml /etc/prometheus/
 ```
 
-Di chuyển các tệp nhị phân vào các thư mục thích hợp:
-
+- Di chuyển các tệp nhị phân vào các thư mục thích hợp.
 ```bash
 sudo mv /tmp/prometheus-2.53.3.linux-amd64/prometheus /usr/local/bin/
 sudo mv /tmp/prometheus-2.53.3.linux-amd64/promtool /usr/local/bin/
 ```
 
-Đặt chủ sở hữu của các tập tin cấu hình chocho người dùng `prometheus`:
-
+- Đặt chủ sở hữu của các tập tin cấu hình chocho người dùng `prometheus`.
 ```bash
 sudo chown -R prometheus:prometheus /etc/prometheus/consoles
 sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
 ```
 
-Đặt chủ sở hữu của các tập tin nhị phân cho người dùng `prometheus`:
-
+- Đặt chủ sở hữu của các tập tin nhị phân cho người dùng `prometheus`.
 ```bash
 sudo chown prometheus:prometheus /usr/local/bin/prometheus
 sudo chown prometheus:prometheus /usr/local/bin/promtool
@@ -231,7 +206,6 @@ sudo chown prometheus:prometheus /usr/local/bin/promtool
 #### Prometheus configuration file
 Chúng tôi đã sao chép tệp 'prometheus.yml' từ '/tmp/prometheus-2.53.3.linux-amd64/' vào thư mục '/etc/prometheus' ở bước trên.
 Bạn hãy kiểm tra xem nó có tồn tại và trông giống như bên dưới không rồi sửa đổi theo yêu cầu của bạn.
-
 ```bash
 sudo nano /etc/prometheus/prometheus.yml
 ```
@@ -239,14 +213,12 @@ sudo nano /etc/prometheus/prometheus.yml
 <img alt="Prometheus Config File" src="/images/Prometheus_Config_File.png">
 
 #### Creating a Prometheus Service
-Để quản lý Prometheus bằng systemd, hãy tạo một tệp dịch vụ:
-
+- Để quản lý Prometheus bằng systemd, hãy tạo một tệp dịch vụ.
 ```bash
 sudo nano /etc/systemd/system/prometheus.service
 ```
 
-Sau đó điền thông tin như nội dung dưới:
-
+- Sau đó điền thông tin như nội dung dưới.
 ```bash
 [Unit]
 Description=Prometheus Monitoring
@@ -267,14 +239,12 @@ ExecStart=/usr/local/bin/prometheus \
 WantedBy=multi-user.target
 ```
 
-Tiếp theo thực hiện nạp lại systemd:
-
+- Tiếp theo thực hiện nạp lại systemd.
 ```bash
 sudo systemctl daemon-reload
 ```
 
-Thực hiện Chạy, Kích hoạt, và xem Trạng thái dịch vụ Prometheus:
-
+- Thực hiện Chạy, Kích hoạt, và xem Trạng thái dịch vụ Prometheus.
 ```bash
 sudo systemctl start prometheus
 sudo systemctl enable prometheus
@@ -285,24 +255,23 @@ sudo systemctl status prometheus
 Bây giờ Prometheus đã được cài đặt, thiết lập thành công và sẵn sàng để sử dụng.
 Chúng ta có thể truy cập các dịch vụ của nó thông qua giao diện web.
 Ngoài ra, hãy kiểm tra xem cổng 9090 có được bật trong tường lửa không.
-- Sử dụng lệnh bên dưới để kích hoạt tường lửa cho dịch vụ Prometheus.
 
+- Sử dụng lệnh bên dưới để kích hoạt tường lửa cho dịch vụ Prometheus.
 ```bash
 sudo ufw allow 9090/tcp
 ```
 
 Bây giờ dịch vụ Prometheus đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://server-IP-or-Hostname:9090.`
 <img alt="Prometheus Finish" src="/images/Prometheus_Finish.png">
-Như chúng ta có thể thấy bảng điều khiển Prometheus, chúng ta cũng có thể kiểm tra mục tiêu. Như chúng ta có thể thấy trạng thái hiện tại là LÊN và chúng ta cũng có thể thấy lần cào cuối cùng.
+Như chúng ta có thể thấy bảng điều khiển Prometheus, chúng ta cũng có thể kiểm tra mục tiêu. Như chúng ta có thể thấy trạng thái hiện tại là `UP` và chúng ta cũng có thể thấy lần cào cuối cùng.
 <img alt="Prometheus Finish" src="/images/Prometheus_Finish_1.png">
 
 ## 3.Setup Node Exporter
 *Thực hiện trên máy chủ **NuxSVR-VTVT**.*
 
 #### Creating a Node Exporter User
-Vì một vài lý do bảo mật, Node Exporter không chạy như là root user. Do đó cần khởi tạo user cho Node Exporter:
-*Chú ý: ta đặt tên cho user này là:* `node_exporter`
-
+- Vì một vài lý do bảo mật, Node Exporter không chạy như là root user. Do đó cần khởi tạo user cho Node Exporter.
+*Chú ý: ta đặt tên cho user này là:* `node_exporter`.
 ```bash
 sudo useradd --no-create-home --shell /bin/false node_exporter
 ```
@@ -315,32 +284,27 @@ sudo useradd -rs /bin/false node_exporter
 Truy cập trang phát hành chính thức của [Prometheus Node Exporter](https://github.com/prometheus/node_exporter/releases/) và sao chép liên kết phiên bản mới nhất của gói Node Exporter theo loại hệ điều hành của bạn.
 Tại dự án này chúng ta sử dụng Prometheus Node Exporter version 1.9.0 (Filename: node_exporter-1.9.0.darwin-amd64.tar.gz)
 
-- Bạn cần di chuyển đến thư mục `/tmp`:
-
+- Bạn cần di chuyển đến thư mục `/tmp`.
 ```bash
 cd /tmp/
 ```
 
-- Sử dụng `wget` để tải Node ExplorerExplorer:
-
+- Sử dụng `wget` để tải Node Explorer.
 ```bash
 wget https://github.com/prometheus/node_exporter/releases/download/v1.9.0/node_exporter-1.9.0.darwin-amd64.tar.gz
 ```
 
-- Sử dụng `tar` để giải nén:
-
+- Sử dụng `tar` để giải nén.
 ```bash
 tar -xvf node_exporter-1.9.0.darwin-amd64.tar.gz
 ```
 
-- Di chuyển về thư mục gốc `/`:
-
+- Di chuyển về thư mục gốc `/`.
 ```bash
 cd /
 ```
 
-- Di chuyển tệp nhị phân của **Node Exporter** đến vị trí `/usr/local/bin`:
-
+- Di chuyển tệp nhị phân của **Node Exporter** đến vị trí `/usr/local/bin`.
 ```bash
 sudo mv /tmp/node_exporter-*.*-amd64/node_exporter /usr/local/bin/
 ```
