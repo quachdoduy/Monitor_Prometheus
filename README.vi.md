@@ -21,7 +21,8 @@ Nguồn tài liệu tham khảo tại đây:
 - [Prometheus.](https://prometheus.io/docs/introduction/overview/)
 - [Grafana.](https://grafana.com/docs/)
 
-Dự án được xây dựng trên mô hình ảo hóa (VMWare) với các máy chủ cài đặt hệ điều hành Ubuntu Server 24.04 LTS. Danh sách các máy chủ như dưới:
+Dự án được xây dựng trên mô hình ảo hóa (VMWare) với các máy chủ cài đặt hệ điều hành Ubuntu Server 24.04 LTS.<br>
+Danh sách các máy chủ như dưới:
 - Server Prometheus:
     Thực hiện cài đặt các thành phần:
     - Prometheus.
@@ -56,8 +57,8 @@ Dự án được xây dựng trên mô hình ảo hóa (VMWare) với các máy
         - HostName: NuxSVR-VT và MicSVR-VT
         - CPU: 2 | RAM: 4GB | HDD: 40GB
         - NIC: 1 (NAT) | IPv4: 192.168.203.161/24 và 192.168.203.162/24
-3. Các chú ý tinh chỉnh sau khi cài đặt.
-    Windows Server 2019: đăng nhập bằng tài khoản quản trị **.\Administrator**. *(Chú ý: môi trường Local không Domain.)*
+3. Các chú ý tinh chỉnh sau khi cài đặt.<br>
+    Windows Server 2019: đăng nhập bằng tài khoản quản trị **.\Administrator**. *(Chú ý: môi trường Local không Domain.)*<br>
     Ubutu 24.02 LTS: đăng nhập bằng tài khoản quản trị **root**. *(Chú ý: mặc định tài khoản root không được kích hoạt, bạn cần đặt mặt khẩu sau đó mới đăng nhập được.)*
 
 **Kích hoạt tài khoản root**
@@ -154,7 +155,7 @@ sudo chown prometheus:prometheus /var/lib/prometheus
 ```
 
 #### Downloading Prometheus Binary File
-Đến trang [tải xuống Prometheus chính thức](https://prometheus.io/download/) để tìm bản phát hành mới nhất. Tải xuống và giải nén Prometheus:
+Đến trang [tải xuống Prometheus chính thức](https://prometheus.io/download/) để tìm bản phát hành mới nhất. Tải xuống và giải nén Prometheus:<br>
 Sử dụng lệnh bên dưới, chúng ta có thể tải xuống Prometheus, ở đây chúng ta đang tải xuống phiên bản **Prometheus 2.53.3 LTS** *(Filename: prometheus-2.53.3.linux-amd64.tar.gz)*, bạn sử dụng liên kết trên để tải xuống phiên bản cụ thể.
 
 - Bạn cần di chuyển đến thư mục `/tmp`.
@@ -203,8 +204,8 @@ sudo chown prometheus:prometheus /usr/local/bin/promtool
 ```
 
 #### Prometheus configuration file
-Chúng tôi đã sao chép tệp 'prometheus.yml' từ '/tmp/prometheus-2.53.3.linux-amd64/' vào thư mục '/etc/prometheus' ở bước trên.
-Bạn hãy kiểm tra xem nó có tồn tại không.
+Chúng tôi đã sao chép tệp `prometheus.yml` từ `/tmp/prometheus-2.53.3.linux-amd64/` vào thư mục `/etc/prometheus` ở bước trên.<br>
+Bạn hãy kiểm tra xem nó có tồn tại không.<br>
 File này sẽ cần chỉnh sửa và sẽ được hướng dẫn trong phần sau.
 ```bash
 sudo nano /etc/prometheus/prometheus.yml
@@ -252,8 +253,8 @@ sudo systemctl status prometheus
 ```
 
 #### Accessing Prometheus in Browser
-Bây giờ Prometheus đã được cài đặt, thiết lập thành công và sẵn sàng để sử dụng.
-Chúng ta có thể truy cập các dịch vụ của nó thông qua giao diện web.
+Bây giờ Prometheus đã được cài đặt, thiết lập thành công và sẵn sàng để sử dụng.<br>
+Chúng ta có thể truy cập các dịch vụ của nó thông qua giao diện web.<br>
 Ngoài ra, hãy kiểm tra xem cổng 9090 có được bật trong tường lửa không.
 
 - Sử dụng lệnh bên dưới để kích hoạt tường lửa cho dịch vụ Prometheus.
@@ -263,7 +264,7 @@ sudo ufw allow 9090/tcp
 
 Bây giờ dịch vụ Prometheus đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://server-IP-or-Hostname:9090.`
 <img alt="Prometheus Finish" src="/images/Prometheus_Finish.png">
-Như chúng ta có thể thấy bảng điều khiển Prometheus, chúng ta cũng có thể kiểm tra mục tiêu. Như chúng ta có thể thấy trạng thái hiện tại là `UP` và chúng ta cũng có thể thấy lần cào cuối cùng.
+Như chúng ta có thể thấy bảng điều khiển Prometheus, chúng ta cũng có thể kiểm tra mục **Targets** có thể thấy trạng thái hiện tại là **UP** và chúng ta cũng có thể thấy lần cào cuối cùng.
 <img alt="Prometheus Finish" src="/images/Prometheus_Finish_1.png">
 
 ## 3.Setup Node Exporter
@@ -280,7 +281,7 @@ sudo useradd -rs /bin/false node_exporter
 ```
 
 #### Download Node Exporter
-Truy cập trang phát hành chính thức của [Prometheus Node Exporter](https://github.com/prometheus/node_exporter/releases/) và sao chép liên kết phiên bản mới nhất của gói Node Exporter theo loại hệ điều hành của bạn.
+Truy cập trang phát hành chính thức của [Prometheus Node Exporter](https://github.com/prometheus/node_exporter/releases/) và sao chép liên kết phiên bản mới nhất của gói Node Exporter theo loại hệ điều hành của bạn.<br>
 Tại dự án này chúng ta sử dụng Prometheus Node Exporter version 1.9.0 (Filename: node_exporter-1.9.0.linux-amd64.tar.gz)
 
 Chú ý: *Bạn hãy chọn đúng phiên bản phù hợp với máy chủ cần giám sát*
