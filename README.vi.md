@@ -41,7 +41,7 @@ Danh sách các máy chủ như dưới:
 # CÁC BƯỚC CHÍNH
 1. Cài đặt và hiệu chỉnh các máy chủ như yêu cầu trên nền tảng VMWare.
 2. Tiến hành cài đặt Prometheus trên Server Prometheus.
-3. Tiến hành cài đặt Node Exporter trên Server Linux và Server Windows
+3. Tiến hành cài đặt Node Exporter | Windows Exporter | SNMP Exporter trên Server Linux và Server Windows.
 4. Tiến hành cài đặt Grafana trên Server Grafana.
 5. Tiến hành cài đặt Alert Manager trên Server Prometheus.
 
@@ -54,7 +54,7 @@ Danh sách các máy chủ như dưới:
     - Prometheus Server:
         - HostName: ProSVR-VT
         - CPU: 4 | RAM: 8GB | HDD: 40GB
-        - NIC: 1 (NAT) | IPv4: 192.168.203.150/24
+        - NIC: 1 (NAT) | IPv4: 192.168.203.166/24
     - Grafana Server:
         - HostName: GraSVR-VT
         - CPU: 2 | RAM: 4GB | HDD: 40GB
@@ -62,7 +62,11 @@ Danh sách các máy chủ như dưới:
     - Linux Server và Windows Server:
         - HostName: NuxSVR-VT và MicSVR-VT
         - CPU: 2 | RAM: 4GB | HDD: 40GB
-        - NIC: 1 (NAT) | IPv4: 192.168.203.161/24 và 192.168.203.162/24
+        - NIC: 1 (NAT) | IPv4: 192.168.203.167/24 và 192.168.203.168/24
+    - Linux Server:
+        - HostName: snmpSVR-VT
+        - CPU: 2 | RAM: 4GB | HDD: 40GB
+        - NIC: 1 (NAT) | IPv4: 192.168.203.169/24
 3. Các chú ý tinh chỉnh sau khi cài đặt.<br>
     Windows Server 2019: đăng nhập bằng tài khoản quản trị **.\Administrator**. *(Chú ý: môi trường Local không Domain.)*<br>
     Ubutu 24.02 LTS: đăng nhập bằng tài khoản quản trị **root**. *(Chú ý: mặc định tài khoản root không được kích hoạt, bạn cần đặt mặt khẩu sau đó mới đăng nhập được.)*
@@ -401,6 +405,13 @@ netstat -ano | findstr :9100
 
 - Bây giờ dịch vụ Windows Exporter đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://MicSVR-VT:9100/metrics`.
 <img alt="Node Exporter" src="/images/Windows_Exporter_Finish.png">
+
+## 3.3 Setup SNMP Exporter on Linux
+*Thực hiện trên máy chủ **snmpSVR-VT**.*
+- Máy chủ này đứng giữa máy chủ Prometheus và thiết bị Network mà được giám sát bằng SNMP.
+
+
+
 
 ## Configure the Node Exporter as a Prometheus target
 Bây giờ để trích xuất `node_exporter`, hãy hướng dẫn **Prometheus** kết nối bằng cách:
