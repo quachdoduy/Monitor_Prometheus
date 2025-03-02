@@ -268,7 +268,7 @@ Như chúng ta có thể thấy bảng điều khiển Prometheus, chúng ta cũ
 <img alt="Prometheus Finish" src="/images/Prometheus_Finish_1.png">
 
 ## 3.Setup Node Exporter
-*Thực hiện trên máy chủ **NuxSVR-VTVT**.*
+*Thực hiện trên máy chủ **NuxSVR-VT**.*
 
 #### Creating a Node Exporter User
 - Vì một vài lý do bảo mật, Node Exporter không chạy như là root user. Do đó cần khởi tạo user cho Node Exporter.<br>*Chú ý: ta đặt tên cho user này là:* `node_exporter`.
@@ -428,3 +428,9 @@ sudo journalctl -u prometheus --no-pager --lines=50
 
 - Bây giờ truy cập vào dịch vụ Prometheus từ bất kỳ trình duyệt web nào `http://ProSVR-Vt:9090.`
 <img alt="Prometheus Finish" src="/images/prometheus_NodeExporter_Finish.png">
+
+*Chú ý: Phần triển khai Node Exporter trên Windows Server xin được cập nhật lại trong phiên bản sau*
+
+## 4.Setup Grafana
+*Thực hiện trên máy chủ **GraSVR-VT**.*
+
