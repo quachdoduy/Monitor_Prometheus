@@ -588,8 +588,42 @@ sudo systemctl restart prometheus
 sudo journalctl -u prometheus --no-pager --lines=50
 ```
 
-- Bây giờ truy cập vào dịch vụ Prometheus từ bất kỳ trình duyệt web nào `http://ProSVR-Vt:9090`.
+- Bây giờ truy cập vào dịch vụ Prometheus từ bất kỳ trình duyệt web nào `http://ProSVR-VT:9090`.
 <img alt="Prometheus connected to Node Exporter" src="/images/prometheus_NodeExporter_Finish.png">
 
 # 4.Setup Grafana
 *Thực hiện trên máy chủ **GraSVR-VT**.*
+
+- Sử dụng `wget` để tải và thêm khóa Grafana GPG.
+```bash
+wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+```
+
+- Tiếp theo, thêm nguồn Repo của Grafana vào nguồn APT.
+```bash
+sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+```
+
+- Cập nhật lại danh sách gói trong bộ nhớ đệm của APT.
+```bash
+sudo apt update
+```
+
+- Bây giờ bạn có thể tiến hành cài đặt Grafana.
+```bash
+sudo apt install grafana
+```
+
+- Sau khi cài đặt xong tiến hành khởi động máy chủ Grafana.
+```bash
+sudo systemctl start grafana-server
+```
+
+- Tiếp theo, hãy kiểm tra xác nhận lại Grafana đã chạy.
+```bash
+sudo systemctl status grafana-server
+sudo systemctl enable grafana-server
+```
+
+- Bây giờ truy cập vào **Bảng điều khiển Grafana** từ bất kỳ trình duyệt web nào `http://GraSVR-VT:3000`.
+<img alt="Grafana Finish" src="/images/Grafana_Finish.png">
