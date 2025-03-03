@@ -240,6 +240,7 @@ After=network-online.target
 User=prometheus
 Group=prometheus
 Type=simple
+Restart=always
 ExecStart=/usr/local/bin/prometheus \
     --config.file=/etc/prometheus/prometheus.yml \
     --storage.tsdb.path=/var/lib/prometheus/ \
@@ -332,12 +333,14 @@ sudo nano /etc/systemd/system/node_exporter.service
 ```bash
 [Unit]
 Description=Node Exporter
-After=network.target
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 User=node_exporter
 Group=node_exporter
 Type=simple
+Restart=always
 ExecStart=/usr/local/bin/node_exporter
 
 [Install]
@@ -369,7 +372,7 @@ sudo ufw allow 9100/tcp
 Bây giờ dịch vụ Node Exporter đã sẵn sàng chạy và chúng ta có thể truy cập từ bất kỳ trình duyệt web nào `http://NuxSVR-VT:9100`.
 <img alt="Node Exporter" src="/images/Node_Exporter_Finish.png">
 
-## 3.2 Setup Node Exporter on Windows
+## 3.2 Setup Windows Exporter
 *Thực hiện trên máy chủ **MicSVR-VT**.*
 - Trước đây các Node Exporter cho Windows được gọi là **WMI Exporter** nhưng nay được gọi là **Windows Exporter**.
 
@@ -409,6 +412,102 @@ netstat -ano | findstr :9100
 ## 3.3 Setup SNMP Exporter on Linux
 *Thực hiện trên máy chủ **snmpSVR-VT**.*
 - Máy chủ này đứng giữa máy chủ Prometheus và thiết bị Network mà được giám sát bằng SNMP.
+
+## Creating a SNMP Exporter User
+- Vì một vài lý do bảo mật, SNMP Exporter không chạy như là root user. Do đó cần khởi tạo user cho SNMP Exporter.<br>*Chú ý: ta đặt tên cho user này là:* `snmp_exporter`.
+```bash
+sudo useradd --no-create-home --shell /bin/false snmp_exporter
+```
+hoặc
+```bash
+sudo useradd -rs /bin/false snmp_exporter
+```
+
+## Download SNMP Exporter
+Truy cập trang phát hành chính thức của [Prometheus SNMP Exporter](https://github.com/prometheus/snmp_exporter/releases/) và sao chép liên kết phiên bản mới nhất của gói SNMP Exporter theo loại hệ điều hành của bạn.<br>
+Tại dự án này chúng ta sử dụng Prometheus SNMP Exporter version 0.28.0 (Filename: snmp_exporter-0.28.0.linux-386.tar.gz)
+
+Chú ý: *Bạn hãy chọn đúng phiên bản phù hợp với máy chủ cần giám sát*
+
+- Bạn cần di chuyển đến thư mục `/tmp`.
+```bash
+cd /tmp/
+```
+
+- Sử dụng `wget` để tải SNMP Exporter.
+```bash
+wget https://github.com/prometheus/snmp_exporter/releases/download/v0.28.0/snmp_exporter-0.28.0.linux-386.tar.gz
+```
+
+- Sử dụng `tar` để giải nén.
+```bash
+tar -xvf snmp_exporter-0.28.0.linux-386.tar.gz
+```
+
+- Di chuyển về thư mục gốc `/`.
+```bash
+cd /
+```
+
+- Di chuyển tệp nhị phân của **SNMP Exporter** đến vị trí `/usr/local/bin`.
+```bash
+sudo mv /tmp/snmp_exporter-0.28.0.linux-386/snmp_exporter /usr/local/bin/
+```
+
+- Di chuyển tệp `snmp.yml` đến vị trí `/etc/snmp_exporter/`.
+```bash
+mkdir /etc/snmp_exporter/
+sudo mv /tmp/snmp_exporter-0.28.0.linux-386/snmp.yml /etc/snmp_exporter/
+```
+
+- Đặt chủ sở hữu của các tập tin nhị phân cho người dùng `snmp_exporter`.
+```bash
+sudo chown snmp_exporter:snmp_exporter /usr/local/bin/snmp_exporter
+sudo chown -R snmp_exporter:snmp_exporter /etc/snmp_exporter/
+```
+
+*Chú ý:<br>về file `snmp.yml` ta có 2 cách thiết lập (Thủ công / Generate).<br>Bạn có thể tham khảo thêm từ trang chính thức của Prometheus*
+
+## Creating SNMP Exporter Systemd service
+- Tạo tệp dịch vụ `snmp_exporter` trong thư mục `/etc/systemd/system`.
+```bash
+sudo nano /etc/systemd/system/snmp_exporter.service
+```
+
+- Sau đó điền thông tin như nội dung dưới.
+```bash
+[Unit]
+Description=Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=snmp_exporter
+Group=snmp_exporter
+Type=simple
+Restart=always
+ExecStart=/usr/local/bin/snmp_exporter --config.file=/etc/snmp_exporter/snmp.yml
+
+[Install]
+WantedBy=multi-user.target
+```
+
+- Tiếp theo thực hiện nạp lại systemd.
+```bash
+sudo systemctl daemon-reload
+```
+
+- Thực hiện Chạy, Kích hoạt, và xem Trạng thái dịch vụ SNMP Exporter.
+```bash
+sudo systemctl start snmp_exporter
+sudo systemctl enable snmp_exporter
+sudo systemctl status snmp_exporter
+```
+
+
+
+
+
 
 
 
