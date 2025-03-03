@@ -477,7 +477,7 @@ sudo nano /etc/systemd/system/snmp_exporter.service
 - Sau đó điền thông tin như nội dung dưới.
 ```bash
 [Unit]
-Description=Node Exporter
+Description=SNMP Exporter
 Wants=network-online.target
 After=network-online.target
 
