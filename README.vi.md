@@ -626,4 +626,6 @@ sudo systemctl enable grafana-server
 ```
 
 - Bây giờ truy cập vào **Bảng điều khiển Grafana** từ bất kỳ trình duyệt web nào `http://GraSVR-VT:3000`.
+    - Account: admin
+    - Password: admin
 <img alt="Grafana Finish" src="/images/Grafana_Finish.png">
