@@ -594,6 +594,7 @@ sudo journalctl -u prometheus --no-pager --lines=50
 # 4.Setup Grafana
 *Thực hiện trên máy chủ **GraSVR-VT**.*
 
+## Cài đặt Grafana
 - Sử dụng `wget` để tải và thêm khóa Grafana GPG.
 ```bash
 wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
@@ -629,3 +630,7 @@ sudo systemctl enable grafana-server
     - Account: admin
     - Password: admin
 <img alt="Grafana Finish" src="/images/Grafana_Finish.png">
+
+## Kết nối Prometheus
+- Cấu hình Prometheus làm Grafana DataSource
+<img alt="Grafana Finish" src="/images/Grafana_DataSource.png">
