@@ -1,0 +1,861 @@
+fortinet_fortigate:
+  walk:
+  - 1.3.6.1.2.1.2.2.1.10
+  - 1.3.6.1.2.1.2.2.1.16
+  - 1.3.6.1.4.1.12356.101.12
+  - 1.3.6.1.4.1.12356.101.4
+  metrics:
+  - name: ifInOctets
+    oid: 1.3.6.1.2.1.2.2.1.10
+    type: counter
+    help: The total number of octets received on the interface, including framing
+      characters - 1.3.6.1.2.1.2.2.1.10
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+  - name: ifOutOctets
+    oid: 1.3.6.1.2.1.2.2.1.16
+    type: counter
+    help: The total number of octets transmitted out of the interface, including framing
+      characters - 1.3.6.1.2.1.2.2.1.16
+    indexes:
+    - labelname: ifIndex
+      type: gauge
+  - name: fgVpnTunnelUpCount
+    oid: 1.3.6.1.4.1.12356.101.12.1.1
+    type: gauge
+    help: The number of IPsec VPN tunnels with at least one SA - 1.3.6.1.4.1.12356.101.12.1.1
+  - name: fgVpnDialupIndex
+    oid: 1.3.6.1.4.1.12356.101.12.2.1.1.1
+    type: gauge
+    help: An index value that uniquely identifies an VPN dial-up peer within the fgVpnDialupTable
+      - 1.3.6.1.4.1.12356.101.12.2.1.1.1
+    indexes:
+    - labelname: fgVpnDialupIndex
+      type: gauge
+  - name: fgVpnDialupGateway
+    oid: 1.3.6.1.4.1.12356.101.12.2.1.1.2
+    type: InetAddressIPv4
+    help: Remote gateway IP address of the tunnel - 1.3.6.1.4.1.12356.101.12.2.1.1.2
+    indexes:
+    - labelname: fgVpnDialupIndex
+      type: gauge
+  - name: fgVpnDialupLifetime
+    oid: 1.3.6.1.4.1.12356.101.12.2.1.1.3
+    type: gauge
+    help: Tunnel life time (seconds) of the tunnel - 1.3.6.1.4.1.12356.101.12.2.1.1.3
+    indexes:
+    - labelname: fgVpnDialupIndex
+      type: gauge
+  - name: fgVpnDialupTimeout
+    oid: 1.3.6.1.4.1.12356.101.12.2.1.1.4
+    type: gauge
+    help: Time before the next key exchange (seconds) of the tunnel - 1.3.6.1.4.1.12356.101.12.2.1.1.4
+    indexes:
+    - labelname: fgVpnDialupIndex
+      type: gauge
+  - name: fgVpnDialupSrcBegin
+    oid: 1.3.6.1.4.1.12356.101.12.2.1.1.5
+    type: InetAddressIPv4
+    help: Remote subnet address of the tunnel - 1.3.6.1.4.1.12356.101.12.2.1.1.5
+    indexes:
+    - labelname: fgVpnDialupIndex
+      type: gauge
+  - name: fgVpnDialupSrcEnd
+    oid: 1.3.6.1.4.1.12356.101.12.2.1.1.6
+    type: InetAddressIPv4
+    help: Remote subnet mask of the tunnel - 1.3.6.1.4.1.12356.101.12.2.1.1.6
+    indexes:
+    - labelname: fgVpnDialupIndex
+      type: gauge
+  - name: fgVpnDialupDstAddr
+    oid: 1.3.6.1.4.1.12356.101.12.2.1.1.7
+    type: InetAddressIPv4
+    help: Local subnet address of the tunnel - 1.3.6.1.4.1.12356.101.12.2.1.1.7
+    indexes:
+    - labelname: fgVpnDialupIndex
+      type: gauge
+  - name: fgVpnDialupVdom
+    oid: 1.3.6.1.4.1.12356.101.12.2.1.1.8
+    type: gauge
+    help: Virtual domain tunnel is part of - 1.3.6.1.4.1.12356.101.12.2.1.1.8
+    indexes:
+    - labelname: fgVpnDialupIndex
+      type: gauge
+  - name: fgVpnDialupInOctets
+    oid: 1.3.6.1.4.1.12356.101.12.2.1.1.9
+    type: counter
+    help: Number of bytes received on tunnel since instantiation. - 1.3.6.1.4.1.12356.101.12.2.1.1.9
+    indexes:
+    - labelname: fgVpnDialupIndex
+      type: gauge
+  - name: fgVpnDialupOutOctets
+    oid: 1.3.6.1.4.1.12356.101.12.2.1.1.10
+    type: counter
+    help: Number of bytes sent on tunnel since instantiation. - 1.3.6.1.4.1.12356.101.12.2.1.1.10
+    indexes:
+    - labelname: fgVpnDialupIndex
+      type: gauge
+  - name: fgVpnTunEntIndex
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.1
+    type: gauge
+    help: An index value that uniquely identifies a VPN tunnel within the fgVpnTunTable
+      - 1.3.6.1.4.1.12356.101.12.2.2.1.1
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntPhase1Name
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.2
+    type: DisplayString
+    help: Descriptive name of phase1 configuration for the tunnel - 1.3.6.1.4.1.12356.101.12.2.2.1.2
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntPhase2Name
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.3
+    type: DisplayString
+    help: Descriptive name of phase2 configuration for the tunnel - 1.3.6.1.4.1.12356.101.12.2.2.1.3
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntRemGwyIp
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.4
+    type: InetAddressIPv4
+    help: IP of remote gateway used by the tunnel - 1.3.6.1.4.1.12356.101.12.2.2.1.4
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntRemGwyPort
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.5
+    type: gauge
+    help: port of remote gateway used by tunnel, if UDP - 1.3.6.1.4.1.12356.101.12.2.2.1.5
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntLocGwyIp
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.6
+    type: InetAddressIPv4
+    help: IP of local gateway used by the tunnel - 1.3.6.1.4.1.12356.101.12.2.2.1.6
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntLocGwyPort
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.7
+    type: gauge
+    help: port of local gateway used by tunnel, if UDP - 1.3.6.1.4.1.12356.101.12.2.2.1.7
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntSelectorSrcBeginIp
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.8
+    type: InetAddressIPv4
+    help: Beginning of address range of source selector - 1.3.6.1.4.1.12356.101.12.2.2.1.8
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntSelectorSrcEndIp
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.9
+    type: InetAddressIPv4
+    help: End of address range of source selector - 1.3.6.1.4.1.12356.101.12.2.2.1.9
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntSelectorSrcPort
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.10
+    type: gauge
+    help: Source selector port - 1.3.6.1.4.1.12356.101.12.2.2.1.10
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntSelectorDstBeginIp
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.11
+    type: InetAddressIPv4
+    help: Beginning of address range of destination selector - 1.3.6.1.4.1.12356.101.12.2.2.1.11
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntSelectorDstEndIp
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.12
+    type: InetAddressIPv4
+    help: End of address range of destination selector - 1.3.6.1.4.1.12356.101.12.2.2.1.12
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntSelectorDstPort
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.13
+    type: gauge
+    help: Destination selector port - 1.3.6.1.4.1.12356.101.12.2.2.1.13
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntSelectorProto
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.14
+    type: gauge
+    help: Protocol number for selector - 1.3.6.1.4.1.12356.101.12.2.2.1.14
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntLifeSecs
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.15
+    type: gauge
+    help: Lifetime of tunnel in seconds, if time based lifetime used - 1.3.6.1.4.1.12356.101.12.2.2.1.15
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntLifeBytes
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.16
+    type: gauge
+    help: Lifetime of tunnel in bytes, if byte transfer based lifetime used - 1.3.6.1.4.1.12356.101.12.2.2.1.16
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntTimeout
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.17
+    type: gauge
+    help: Timeout of tunnel in seconds - 1.3.6.1.4.1.12356.101.12.2.2.1.17
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntInOctets
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.18
+    type: counter
+    help: Number of bytes received on tunnel - 1.3.6.1.4.1.12356.101.12.2.2.1.18
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntOutOctets
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.19
+    type: counter
+    help: Number of bytes sent out on tunnel - 1.3.6.1.4.1.12356.101.12.2.2.1.19
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnTunEntStatus
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.20
+    type: gauge
+    help: Current status of tunnel (up or down) - 1.3.6.1.4.1.12356.101.12.2.2.1.20
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+    enum_values:
+      1: down
+      2: up
+  - name: fgVpnTunEntVdom
+    oid: 1.3.6.1.4.1.12356.101.12.2.2.1.21
+    type: gauge
+    help: Virtual domain the tunnel is part of - 1.3.6.1.4.1.12356.101.12.2.2.1.21
+    indexes:
+    - labelname: fgVpnTunEntIndex
+      type: gauge
+  - name: fgVpnSslState
+    oid: 1.3.6.1.4.1.12356.101.12.2.3.1.1
+    type: gauge
+    help: Whether SSL-VPN is enabled on this virtual domain - 1.3.6.1.4.1.12356.101.12.2.3.1.1
+    indexes:
+    - labelname: fgVdEntIndex
+      type: gauge
+    enum_values:
+      1: disabled
+      2: enabled
+  - name: fgVpnSslStatsLoginUsers
+    oid: 1.3.6.1.4.1.12356.101.12.2.3.1.2
+    type: gauge
+    help: The current number of users logged in through SSL-VPN tunnels in the virtual
+      domain - 1.3.6.1.4.1.12356.101.12.2.3.1.2
+    indexes:
+    - labelname: fgVdEntIndex
+      type: gauge
+  - name: fgVpnSslStatsMaxUsers
+    oid: 1.3.6.1.4.1.12356.101.12.2.3.1.3
+    type: counter
+    help: The maximum number of total users that can be logged in at any one time
+      on the virtual domain - 1.3.6.1.4.1.12356.101.12.2.3.1.3
+    indexes:
+    - labelname: fgVdEntIndex
+      type: gauge
+  - name: fgVpnSslStatsActiveWebSessions
+    oid: 1.3.6.1.4.1.12356.101.12.2.3.1.4
+    type: gauge
+    help: The current number of active SSL web sessions in the virtual domain - 1.3.6.1.4.1.12356.101.12.2.3.1.4
+    indexes:
+    - labelname: fgVdEntIndex
+      type: gauge
+  - name: fgVpnSslStatsMaxWebSessions
+    oid: 1.3.6.1.4.1.12356.101.12.2.3.1.5
+    type: counter
+    help: The maximum number of active SSL web sessions at any one time within the
+      virtual domain - 1.3.6.1.4.1.12356.101.12.2.3.1.5
+    indexes:
+    - labelname: fgVdEntIndex
+      type: gauge
+  - name: fgVpnSslStatsActiveTunnels
+    oid: 1.3.6.1.4.1.12356.101.12.2.3.1.6
+    type: gauge
+    help: The current number of active SSL tunnels in the virtual domain - 1.3.6.1.4.1.12356.101.12.2.3.1.6
+    indexes:
+    - labelname: fgVdEntIndex
+      type: gauge
+  - name: fgVpnSslStatsMaxTunnels
+    oid: 1.3.6.1.4.1.12356.101.12.2.3.1.7
+    type: counter
+    help: The maximum number of active SSL tunnels at any one time in the virtual
+      domain - 1.3.6.1.4.1.12356.101.12.2.3.1.7
+    indexes:
+    - labelname: fgVdEntIndex
+      type: gauge
+  - name: fgVpnSslTunnelIndex
+    oid: 1.3.6.1.4.1.12356.101.12.2.4.1.1
+    type: gauge
+    help: An index value that uniquely identifies an active SSL VPN tunnel within
+      the fgVpnSslTunnelTable - 1.3.6.1.4.1.12356.101.12.2.4.1.1
+    indexes:
+    - labelname: fgVpnSslTunnelIndex
+      type: gauge
+  - name: fgVpnSslTunnelVdom
+    oid: 1.3.6.1.4.1.12356.101.12.2.4.1.2
+    type: gauge
+    help: The index of the virtual domain this tunnel belongs to - 1.3.6.1.4.1.12356.101.12.2.4.1.2
+    indexes:
+    - labelname: fgVpnSslTunnelIndex
+      type: gauge
+  - name: fgVpnSslTunnelUserName
+    oid: 1.3.6.1.4.1.12356.101.12.2.4.1.3
+    type: DisplayString
+    help: The user name used to authenticate the tunnel - 1.3.6.1.4.1.12356.101.12.2.4.1.3
+    indexes:
+    - labelname: fgVpnSslTunnelIndex
+      type: gauge
+  - name: fgVpnSslTunnelSrcIp
+    oid: 1.3.6.1.4.1.12356.101.12.2.4.1.4
+    type: InetAddressIPv4
+    help: The source IP address of this tunnel - 1.3.6.1.4.1.12356.101.12.2.4.1.4
+    indexes:
+    - labelname: fgVpnSslTunnelIndex
+      type: gauge
+  - name: fgVpnSslTunnelIp
+    oid: 1.3.6.1.4.1.12356.101.12.2.4.1.5
+    type: InetAddressIPv4
+    help: The connection IP address of this tunnel - 1.3.6.1.4.1.12356.101.12.2.4.1.5
+    indexes:
+    - labelname: fgVpnSslTunnelIndex
+      type: gauge
+  - name: fgVpnSslTunnelUpTime
+    oid: 1.3.6.1.4.1.12356.101.12.2.4.1.6
+    type: counter
+    help: The up-time of this tunnel in seconds - 1.3.6.1.4.1.12356.101.12.2.4.1.6
+    indexes:
+    - labelname: fgVpnSslTunnelIndex
+      type: gauge
+  - name: fgVpnSslTunnelBytesIn
+    oid: 1.3.6.1.4.1.12356.101.12.2.4.1.7
+    type: counter
+    help: The number of incoming bytes of L2 traffic through this tunnel since it
+      was established - 1.3.6.1.4.1.12356.101.12.2.4.1.7
+    indexes:
+    - labelname: fgVpnSslTunnelIndex
+      type: gauge
+  - name: fgVpnSslTunnelBytesOut
+    oid: 1.3.6.1.4.1.12356.101.12.2.4.1.8
+    type: counter
+    help: The number of outgoing bytes of L2 traffic through this tunnel since it
+      was established - 1.3.6.1.4.1.12356.101.12.2.4.1.8
+    indexes:
+    - labelname: fgVpnSslTunnelIndex
+      type: gauge
+  - name: fgSysVersion
+    oid: 1.3.6.1.4.1.12356.101.4.1.1
+    type: DisplayString
+    help: Firmware version of the device - 1.3.6.1.4.1.12356.101.4.1.1
+  - name: fgSysMgmtVdom
+    oid: 1.3.6.1.4.1.12356.101.4.1.2
+    type: gauge
+    help: Index that identifies the management virtual domain - 1.3.6.1.4.1.12356.101.4.1.2
+  - name: fgSysCpuUsage
+    oid: 1.3.6.1.4.1.12356.101.4.1.3
+    type: gauge
+    help: Current CPU usage (percentage) - 1.3.6.1.4.1.12356.101.4.1.3
+  - name: fgSysMemUsage
+    oid: 1.3.6.1.4.1.12356.101.4.1.4
+    type: gauge
+    help: Current memory utilization (percentage) - 1.3.6.1.4.1.12356.101.4.1.4
+  - name: fgSysMemCapacity
+    oid: 1.3.6.1.4.1.12356.101.4.1.5
+    type: gauge
+    help: Total physical memory (RAM) installed (KB) - 1.3.6.1.4.1.12356.101.4.1.5
+  - name: fgSysDiskUsage
+    oid: 1.3.6.1.4.1.12356.101.4.1.6
+    type: gauge
+    help: Current hard disk usage (MB), if disk is present - 1.3.6.1.4.1.12356.101.4.1.6
+  - name: fgSysDiskCapacity
+    oid: 1.3.6.1.4.1.12356.101.4.1.7
+    type: gauge
+    help: Total hard disk capacity (MB), if disk is present - 1.3.6.1.4.1.12356.101.4.1.7
+  - name: fgSysSesCount
+    oid: 1.3.6.1.4.1.12356.101.4.1.8
+    type: gauge
+    help: Number of active sessions on the device - 1.3.6.1.4.1.12356.101.4.1.8
+  - name: fgSysLowMemUsage
+    oid: 1.3.6.1.4.1.12356.101.4.1.9
+    type: gauge
+    help: Current lowmem utilization (percentage) - 1.3.6.1.4.1.12356.101.4.1.9
+  - name: fgSysLowMemCapacity
+    oid: 1.3.6.1.4.1.12356.101.4.1.10
+    type: gauge
+    help: Total lowmem capacity (KB) - 1.3.6.1.4.1.12356.101.4.1.10
+  - name: fgSysSesRate1
+    oid: 1.3.6.1.4.1.12356.101.4.1.11
+    type: gauge
+    help: The average session setup rate over the past minute. - 1.3.6.1.4.1.12356.101.4.1.11
+  - name: fgSysSesRate10
+    oid: 1.3.6.1.4.1.12356.101.4.1.12
+    type: gauge
+    help: The average session setup rate over the past 10 minutes. - 1.3.6.1.4.1.12356.101.4.1.12
+  - name: fgSysSesRate30
+    oid: 1.3.6.1.4.1.12356.101.4.1.13
+    type: gauge
+    help: The average session setup rate over the past 30 minutes. - 1.3.6.1.4.1.12356.101.4.1.13
+  - name: fgSysSesRate60
+    oid: 1.3.6.1.4.1.12356.101.4.1.14
+    type: gauge
+    help: The average session setup rate over the past 60 minutes. - 1.3.6.1.4.1.12356.101.4.1.14
+  - name: fgSysSes6Count
+    oid: 1.3.6.1.4.1.12356.101.4.1.15
+    type: gauge
+    help: Number of active ipv6 sessions on the device - 1.3.6.1.4.1.12356.101.4.1.15
+  - name: fgSysSes6Rate1
+    oid: 1.3.6.1.4.1.12356.101.4.1.16
+    type: gauge
+    help: The average ipv6 session setup rate over the past minute. - 1.3.6.1.4.1.12356.101.4.1.16
+  - name: fgSysSes6Rate10
+    oid: 1.3.6.1.4.1.12356.101.4.1.17
+    type: gauge
+    help: The average ipv6 session setup rate over the past 10 minutes. - 1.3.6.1.4.1.12356.101.4.1.17
+  - name: fgSysSes6Rate30
+    oid: 1.3.6.1.4.1.12356.101.4.1.18
+    type: gauge
+    help: The average ipv6 session setup rate over the past 30 minutes. - 1.3.6.1.4.1.12356.101.4.1.18
+  - name: fgSysSes6Rate60
+    oid: 1.3.6.1.4.1.12356.101.4.1.19
+    type: gauge
+    help: The average ipv6 session setup rate over the past 60 minutes. - 1.3.6.1.4.1.12356.101.4.1.19
+  - name: fgSysUpTime
+    oid: 1.3.6.1.4.1.12356.101.4.1.20
+    type: counter
+    help: The 64bit time (in hundredths of a second) since the network management
+      portion of the system was last re-initialized. - 1.3.6.1.4.1.12356.101.4.1.20
+  - name: fgSysVersionAv
+    oid: 1.3.6.1.4.1.12356.101.4.2.1
+    type: DisplayString
+    help: Virus signature database version installed on the device - 1.3.6.1.4.1.12356.101.4.2.1
+  - name: fgSysVersionIps
+    oid: 1.3.6.1.4.1.12356.101.4.2.2
+    type: DisplayString
+    help: IPS signature database version installed on the device - 1.3.6.1.4.1.12356.101.4.2.2
+  - name: fgHwSensorCount
+    oid: 1.3.6.1.4.1.12356.101.4.3.1
+    type: gauge
+    help: The number of entries in fgHwSensorTable - 1.3.6.1.4.1.12356.101.4.3.1
+  - name: fgHwSensorEntIndex
+    oid: 1.3.6.1.4.1.12356.101.4.3.2.1.1
+    type: gauge
+    help: A unique identifier within the fgHwSensorTable - 1.3.6.1.4.1.12356.101.4.3.2.1.1
+    indexes:
+    - labelname: fgHwSensorEntIndex
+      type: gauge
+  - name: fgHwSensorEntName
+    oid: 1.3.6.1.4.1.12356.101.4.3.2.1.2
+    type: DisplayString
+    help: A string identifying the sensor by name - 1.3.6.1.4.1.12356.101.4.3.2.1.2
+    indexes:
+    - labelname: fgHwSensorEntIndex
+      type: gauge
+  - name: fgHwSensorEntValue
+    oid: 1.3.6.1.4.1.12356.101.4.3.2.1.3
+    type: DisplayString
+    help: A string representation of the value of the sensor - 1.3.6.1.4.1.12356.101.4.3.2.1.3
+    indexes:
+    - labelname: fgHwSensorEntIndex
+      type: gauge
+  - name: fgHwSensorEntAlarmStatus
+    oid: 1.3.6.1.4.1.12356.101.4.3.2.1.4
+    type: gauge
+    help: If the sensor has an alarm threshold and has exceeded it, this will indicate
+      its status - 1.3.6.1.4.1.12356.101.4.3.2.1.4
+    indexes:
+    - labelname: fgHwSensorEntIndex
+      type: gauge
+    enum_values:
+      0: "false"
+      1: "true"
+  - name: fgProcessorCount
+    oid: 1.3.6.1.4.1.12356.101.4.4.1
+    type: gauge
+    help: The number of entries in fgProcessorTable - 1.3.6.1.4.1.12356.101.4.4.1
+  - name: fgProcessorEntIndex
+    oid: 1.3.6.1.4.1.12356.101.4.4.2.1.1
+    type: gauge
+    help: A unique identifier within the fgProcessorTable - 1.3.6.1.4.1.12356.101.4.4.2.1.1
+    indexes:
+    - labelname: fgProcessorEntIndex
+      type: gauge
+  - name: fgProcessorUsage
+    oid: 1.3.6.1.4.1.12356.101.4.4.2.1.2
+    type: gauge
+    help: The processor's CPU usage (percentage), which is an average calculated over
+      the last minute - 1.3.6.1.4.1.12356.101.4.4.2.1.2
+    indexes:
+    - labelname: fgProcessorEntIndex
+      type: gauge
+  - name: fgProcessorUsage5sec
+    oid: 1.3.6.1.4.1.12356.101.4.4.2.1.3
+    type: gauge
+    help: The processor's CPU usage (percentage), which is an average calculated over
+      the last 5 sec - 1.3.6.1.4.1.12356.101.4.4.2.1.3
+    indexes:
+    - labelname: fgProcessorEntIndex
+      type: gauge
+  - name: fgProcessorContainedIn
+    oid: 1.3.6.1.4.1.12356.101.4.4.2.1.5
+    type: gauge
+    help: The index to the processor module entry in the fgProcessorModuleTable that
+      contains this processor. - 1.3.6.1.4.1.12356.101.4.4.2.1.5
+    indexes:
+    - labelname: fgProcessorEntIndex
+      type: gauge
+  - name: fgProcessorPktRxCount
+    oid: 1.3.6.1.4.1.12356.101.4.4.2.1.6
+    type: counter
+    help: The total number of packets received by this processor (only valid for processors
+      types that support this statistic). - 1.3.6.1.4.1.12356.101.4.4.2.1.6
+    indexes:
+    - labelname: fgProcessorEntIndex
+      type: gauge
+  - name: fgProcessorPktTxCount
+    oid: 1.3.6.1.4.1.12356.101.4.4.2.1.7
+    type: counter
+    help: The total number of packets transmitted by this processor (only valid for
+      processors types that support this statistic). - 1.3.6.1.4.1.12356.101.4.4.2.1.7
+    indexes:
+    - labelname: fgProcessorEntIndex
+      type: gauge
+  - name: fgProcessorPktDroppedCount
+    oid: 1.3.6.1.4.1.12356.101.4.4.2.1.8
+    type: counter
+    help: The total number of packets dropped by this processor (only valid for processors
+      types that support this statistic). - 1.3.6.1.4.1.12356.101.4.4.2.1.8
+    indexes:
+    - labelname: fgProcessorEntIndex
+      type: gauge
+  - name: fgProcessorUserUsage
+    oid: 1.3.6.1.4.1.12356.101.4.4.2.1.9
+    type: gauge
+    help: The processor's CPU user space usage, which is an average calculated over
+      the last minute - 1.3.6.1.4.1.12356.101.4.4.2.1.9
+    indexes:
+    - labelname: fgProcessorEntIndex
+      type: gauge
+  - name: fgProcessorSysUsage
+    oid: 1.3.6.1.4.1.12356.101.4.4.2.1.10
+    type: gauge
+    help: The processor's CPU system space usage, which is an average calculated over
+      the last minute - 1.3.6.1.4.1.12356.101.4.4.2.1.10
+    indexes:
+    - labelname: fgProcessorEntIndex
+      type: gauge
+  - name: fgProcessorModuleCount
+    oid: 1.3.6.1.4.1.12356.101.4.5.2
+    type: gauge
+    help: The number of entries in fgProcessorModuleTable - 1.3.6.1.4.1.12356.101.4.5.2
+  - name: fgProcModIndex
+    oid: 1.3.6.1.4.1.12356.101.4.5.3.1.1
+    type: gauge
+    help: A unique identifier within the fgProcessorModuleTable - 1.3.6.1.4.1.12356.101.4.5.3.1.1
+    indexes:
+    - labelname: fgProcModIndex
+      type: gauge
+  - name: fgProcModName
+    oid: 1.3.6.1.4.1.12356.101.4.5.3.1.3
+    type: DisplayString
+    help: A textual name of this processor module. - 1.3.6.1.4.1.12356.101.4.5.3.1.3
+    indexes:
+    - labelname: fgProcModIndex
+      type: gauge
+  - name: fgProcModDescr
+    oid: 1.3.6.1.4.1.12356.101.4.5.3.1.4
+    type: DisplayString
+    help: A textual description of this processor module. - 1.3.6.1.4.1.12356.101.4.5.3.1.4
+    indexes:
+    - labelname: fgProcModIndex
+      type: gauge
+  - name: fgProcModProcessorCount
+    oid: 1.3.6.1.4.1.12356.101.4.5.3.1.5
+    type: gauge
+    help: Total number of processors contained by this module. - 1.3.6.1.4.1.12356.101.4.5.3.1.5
+    indexes:
+    - labelname: fgProcModIndex
+      type: gauge
+  - name: fgProcModMemCapacity
+    oid: 1.3.6.1.4.1.12356.101.4.5.3.1.6
+    type: gauge
+    help: Total physical memory (RAM) installed (KB) on this processor module. - 1.3.6.1.4.1.12356.101.4.5.3.1.6
+    indexes:
+    - labelname: fgProcModIndex
+      type: gauge
+  - name: fgProcModMemUsage
+    oid: 1.3.6.1.4.1.12356.101.4.5.3.1.7
+    type: gauge
+    help: Current memory utilization (percentage) on this processor module. - 1.3.6.1.4.1.12356.101.4.5.3.1.7
+    indexes:
+    - labelname: fgProcModIndex
+      type: gauge
+  - name: fgProcModSessionCount
+    oid: 1.3.6.1.4.1.12356.101.4.5.3.1.8
+    type: gauge
+    help: Number of active sessions on this processor module (only valid for processors
+      types that support this statistic). - 1.3.6.1.4.1.12356.101.4.5.3.1.8
+    indexes:
+    - labelname: fgProcModIndex
+      type: gauge
+  - name: fgProcModSACount
+    oid: 1.3.6.1.4.1.12356.101.4.5.3.1.9
+    type: gauge
+    help: Number of IPsec Security Associations on this processor module (only valid
+      for processors types that support this statistic). - 1.3.6.1.4.1.12356.101.4.5.3.1.9
+    indexes:
+    - labelname: fgProcModIndex
+      type: gauge
+  - name: fgSIAdvMemPageCache
+    oid: 1.3.6.1.4.1.12356.101.4.6.1.1
+    type: gauge
+    help: The amount of physical RAM used as cache memory for files read from the
+      disk (the page cache). - 1.3.6.1.4.1.12356.101.4.6.1.1
+  - name: fgSIAdvMemCacheActive
+    oid: 1.3.6.1.4.1.12356.101.4.6.1.2
+    type: gauge
+    help: The toal amount of buffer or page cache memory that are active - 1.3.6.1.4.1.12356.101.4.6.1.2
+  - name: fgSIAdvMemCacheInactive
+    oid: 1.3.6.1.4.1.12356.101.4.6.1.3
+    type: gauge
+    help: The total amount of buffer or page cache memory that are free and available
+      - 1.3.6.1.4.1.12356.101.4.6.1.3
+  - name: fgSIAdvMemBuffer
+    oid: 1.3.6.1.4.1.12356.101.4.6.1.4
+    type: gauge
+    help: The amount of physical RAM used for filesystem buffers. - 1.3.6.1.4.1.12356.101.4.6.1.4
+  - name: fgSIAdvMemEnterKerConsThrsh
+    oid: 1.3.6.1.4.1.12356.101.4.6.1.5
+    type: gauge
+    help: Current memory threshold level to enter kernel conserve mode. - 1.3.6.1.4.1.12356.101.4.6.1.5
+  - name: fgSIAdvMemLeaveKerConsThrsh
+    oid: 1.3.6.1.4.1.12356.101.4.6.1.6
+    type: gauge
+    help: Current memory threshold level to leave kernel conserve mode. - 1.3.6.1.4.1.12356.101.4.6.1.6
+  - name: fgSIAdvMemEnterProxyConsThrsh
+    oid: 1.3.6.1.4.1.12356.101.4.6.1.7
+    type: gauge
+    help: Current memory threshold level to enter proxy conserve mode. - 1.3.6.1.4.1.12356.101.4.6.1.7
+  - name: fgSIAdvMemLeaveProxyConsThrsh
+    oid: 1.3.6.1.4.1.12356.101.4.6.1.8
+    type: gauge
+    help: Current memory threshold level to leave proxy conserve mode. - 1.3.6.1.4.1.12356.101.4.6.1.8
+  - name: fgSIAdvSesEphemeralCount
+    oid: 1.3.6.1.4.1.12356.101.4.6.2.1
+    type: gauge
+    help: The current number of ephemeral sessions on the device. - 1.3.6.1.4.1.12356.101.4.6.2.1
+  - name: fgSIAdvSesEphemeralLimit
+    oid: 1.3.6.1.4.1.12356.101.4.6.2.2
+    type: gauge
+    help: The limit number of allowed ephemeral sessions on the device. - 1.3.6.1.4.1.12356.101.4.6.2.2
+  - name: fgSIAdvSesClashCount
+    oid: 1.3.6.1.4.1.12356.101.4.6.2.3
+    type: gauge
+    help: The number of new sessions which have collision with existing sessions -
+      1.3.6.1.4.1.12356.101.4.6.2.3
+  - name: fgSIAdvSesExpCount
+    oid: 1.3.6.1.4.1.12356.101.4.6.2.4
+    type: gauge
+    help: The number of current expectation sessions. - 1.3.6.1.4.1.12356.101.4.6.2.4
+  - name: fgSIAdvSesSyncQFCount
+    oid: 1.3.6.1.4.1.12356.101.4.6.2.5
+    type: gauge
+    help: The sync queue full counter, reflecting bursts on the sync queue. - 1.3.6.1.4.1.12356.101.4.6.2.5
+  - name: fgSIAdvSesAcceptQFCount
+    oid: 1.3.6.1.4.1.12356.101.4.6.2.6
+    type: gauge
+    help: The accept queue full counter, reflecting bursts on the accept queue. -
+      1.3.6.1.4.1.12356.101.4.6.2.6
+  - name: fgSIAdvSesNoListenerCount
+    oid: 1.3.6.1.4.1.12356.101.4.6.2.7
+    type: gauge
+    help: The number of direct requests to Fortigate local stack from external, reflecting
+      DOS attack towards the Fortigate. - 1.3.6.1.4.1.12356.101.4.6.2.7
+  - name: fgUsbportCount
+    oid: 1.3.6.1.4.1.12356.101.4.7.1
+    type: gauge
+    help: The number of entries in fgUsbportTable. - 1.3.6.1.4.1.12356.101.4.7.1
+  - name: fgUsbportEntIndex
+    oid: 1.3.6.1.4.1.12356.101.4.7.2.1.1
+    type: gauge
+    help: A unique identifier within the fgUsbportTable. - 1.3.6.1.4.1.12356.101.4.7.2.1.1
+    indexes:
+    - labelname: fgUsbportEntIndex
+      type: gauge
+  - name: fgUsbportPlugged
+    oid: 1.3.6.1.4.1.12356.101.4.7.2.1.2
+    type: gauge
+    help: The USB port's plugged status. - 1.3.6.1.4.1.12356.101.4.7.2.1.2
+    indexes:
+    - labelname: fgUsbportEntIndex
+      type: gauge
+    enum_values:
+      0: unplugged
+      1: plugged
+  - name: fgUsbportVersion
+    oid: 1.3.6.1.4.1.12356.101.4.7.2.1.3
+    type: DisplayString
+    help: The USB port's version. - 1.3.6.1.4.1.12356.101.4.7.2.1.3
+    indexes:
+    - labelname: fgUsbportEntIndex
+      type: gauge
+  - name: fgUsbportClass
+    oid: 1.3.6.1.4.1.12356.101.4.7.2.1.4
+    type: gauge
+    help: The device class. - 1.3.6.1.4.1.12356.101.4.7.2.1.4
+    indexes:
+    - labelname: fgUsbportEntIndex
+      type: gauge
+    enum_values:
+      0: ifc
+      1: audio
+      2: comm
+      3: hid
+      5: physical
+      6: image
+      7: printer
+      8: storage
+      9: hub
+      10: cdcData
+      11: chipSmartCard
+      13: contentSecurity
+      254: appSpec
+      255: vendorSpec
+  - name: fgUsbportVendId
+    oid: 1.3.6.1.4.1.12356.101.4.7.2.1.5
+    type: OctetString
+    help: The Vendor ID of the device. - 1.3.6.1.4.1.12356.101.4.7.2.1.5
+    indexes:
+    - labelname: fgUsbportEntIndex
+      type: gauge
+  - name: fgUsbportProdId
+    oid: 1.3.6.1.4.1.12356.101.4.7.2.1.6
+    type: OctetString
+    help: The Product ID of the device. - 1.3.6.1.4.1.12356.101.4.7.2.1.6
+    indexes:
+    - labelname: fgUsbportEntIndex
+      type: gauge
+  - name: fgUsbportRevision
+    oid: 1.3.6.1.4.1.12356.101.4.7.2.1.7
+    type: DisplayString
+    help: The release number of the device. - 1.3.6.1.4.1.12356.101.4.7.2.1.7
+    indexes:
+    - labelname: fgUsbportEntIndex
+      type: gauge
+  - name: fgUsbportManufacturer
+    oid: 1.3.6.1.4.1.12356.101.4.7.2.1.8
+    type: DisplayString
+    help: The manufacturer of the device. - 1.3.6.1.4.1.12356.101.4.7.2.1.8
+    indexes:
+    - labelname: fgUsbportEntIndex
+      type: gauge
+  - name: fgUsbportProduct
+    oid: 1.3.6.1.4.1.12356.101.4.7.2.1.9
+    type: DisplayString
+    help: The product of the device. - 1.3.6.1.4.1.12356.101.4.7.2.1.9
+    indexes:
+    - labelname: fgUsbportEntIndex
+      type: gauge
+  - name: fgUsbportSerial
+    oid: 1.3.6.1.4.1.12356.101.4.7.2.1.10
+    type: DisplayString
+    help: The serial number of the device. - 1.3.6.1.4.1.12356.101.4.7.2.1.10
+    indexes:
+    - labelname: fgUsbportEntIndex
+      type: gauge
+  - name: fgLinkMonitorNumber
+    oid: 1.3.6.1.4.1.12356.101.4.8.1
+    type: gauge
+    help: The number of link monitor in fgLinkMonitorTable - 1.3.6.1.4.1.12356.101.4.8.1
+  - name: fgLinkMonitorID
+    oid: 1.3.6.1.4.1.12356.101.4.8.2.1.1
+    type: gauge
+    help: Link Monitor ID - 1.3.6.1.4.1.12356.101.4.8.2.1.1
+    indexes:
+    - labelname: fgLinkMonitorID
+      type: gauge
+  - name: fgLinkMonitorName
+    oid: 1.3.6.1.4.1.12356.101.4.8.2.1.2
+    type: DisplayString
+    help: Link Monitor name. - 1.3.6.1.4.1.12356.101.4.8.2.1.2
+    indexes:
+    - labelname: fgLinkMonitorID
+      type: gauge
+  - name: fgLinkMonitorState
+    oid: 1.3.6.1.4.1.12356.101.4.8.2.1.3
+    type: gauge
+    help: Link Monitor state. - 1.3.6.1.4.1.12356.101.4.8.2.1.3
+    indexes:
+    - labelname: fgLinkMonitorID
+      type: gauge
+    enum_values:
+      0: alive
+      1: dead
+  - name: fgLinkMonitorLatency
+    oid: 1.3.6.1.4.1.12356.101.4.8.2.1.4
+    type: DisplayString
+    help: The average latency of link monitor in float number within last 30 probes.
+      - 1.3.6.1.4.1.12356.101.4.8.2.1.4
+    indexes:
+    - labelname: fgLinkMonitorID
+      type: gauge
+  - name: fgLinkMonitorJitter
+    oid: 1.3.6.1.4.1.12356.101.4.8.2.1.5
+    type: DisplayString
+    help: The average jitter of link monitor in float number within last 30 probes.
+      - 1.3.6.1.4.1.12356.101.4.8.2.1.5
+    indexes:
+    - labelname: fgLinkMonitorID
+      type: gauge
+  - name: fgLinkMonitorPacketSend
+    oid: 1.3.6.1.4.1.12356.101.4.8.2.1.6
+    type: counter
+    help: The total number of packets sent by link monitor. - 1.3.6.1.4.1.12356.101.4.8.2.1.6
+    indexes:
+    - labelname: fgLinkMonitorID
+      type: gauge
+  - name: fgLinkMonitorPacketRecv
+    oid: 1.3.6.1.4.1.12356.101.4.8.2.1.7
+    type: counter
+    help: The total number of packets received by link monitor. - 1.3.6.1.4.1.12356.101.4.8.2.1.7
+    indexes:
+    - labelname: fgLinkMonitorID
+      type: gauge
+  - name: fgLinkMonitorPacketLoss
+    oid: 1.3.6.1.4.1.12356.101.4.8.2.1.8
+    type: DisplayString
+    help: The average packet loss percentage in float number within last 30 probes.
+      - 1.3.6.1.4.1.12356.101.4.8.2.1.8
+    indexes:
+    - labelname: fgLinkMonitorID
+      type: gauge
+  - name: fgLinkMonitorVdom
+    oid: 1.3.6.1.4.1.12356.101.4.8.2.1.9
+    type: DisplayString
+    help: Virtual domain the link monitor entry exists in - 1.3.6.1.4.1.12356.101.4.8.2.1.9
+    indexes:
+    - labelname: fgLinkMonitorID
+      type: gauge
+  version: 2
+  max_repetitions: 25
+  timeout: 10s
+  auth:
+    community: yourveryowncommunity
