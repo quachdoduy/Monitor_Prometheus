@@ -504,14 +504,6 @@ sudo systemctl enable snmp_exporter
 sudo systemctl status snmp_exporter
 ```
 
-
-
-
-
-
-
-
-
 ## Configure the Node Exporter as a Prometheus target
 Bây giờ để trích xuất `node_exporter`, hãy hướng dẫn **Prometheus** kết nối bằng cách:
 - Thực hiện một thay đổi nhỏ trong tệp `prometheus.yml` **trên máy chủ ProSVR-VT**.
@@ -567,6 +559,23 @@ scrape_configs:
       - targets:
           - "micsvr-vt:9100"
           - "192.168.203.168:9100"
+
+  - job_name: "snmp_exporter"
+    static_configs:
+      - targets:
+          - "192.168.104.1"
+          - "192.168.104.31"
+          - "192.168.104.32"
+    metrics_path: /snmp
+    params:
+      module: [if_mib]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: '192.168.203.169:9116'
 ```
 
 - Bây giờ hãy khởi động lại dịch vụ Prometheus.
