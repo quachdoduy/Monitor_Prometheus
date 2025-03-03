@@ -1,0 +1,23 @@
+hp_proliant:
+  walk:
+  - 1.3.6.1.2.1.25.3.2.1.5
+  metrics:
+  # Descrição do Hardware: 1.3.6.1.2.1.25.3.2.1.3
+  - name: hp_proliant_hr_device_status
+    oid: 1.3.6.1.2.1.25.3.2.1.5
+    type: gauge
+    help: Hardware Component status - 1.3.6.1.2.1.25.3.2.1.5
+    indexes:
+    - labelname: hw_component_id
+      type: gauge
+    enum_values:
+      1: unknown
+      2: running
+      3: warning
+      4: testing
+      5: down
+  version: 2
+  max_repetitions: 25
+  timeout: 10s
+  auth:
+    community: yourveryowncommunity
