@@ -633,4 +633,9 @@ sudo systemctl enable grafana-server
 
 ## Kết nối Prometheus
 - Cấu hình Prometheus làm Grafana DataSource
-<img alt="Grafana Finish" src="/images/Grafana_DataSource.png">
+<img alt="Grafana DataSource" src="/images/Grafana_DataSource.png">
+
+## Khởi tạo Dashboard
+- Tìm kiếm Dashboard trên link `https://grafana.com/grafana/dashboards/`.
+- Import ID vào và sử dụng.
+<img alt="Grafana Dashboard" src="/images/Grafana_Dashboard.png">
